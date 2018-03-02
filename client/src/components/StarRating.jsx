@@ -21,12 +21,7 @@ class StarRating extends React.Component {
 
   render() {
     return (                
-      <div
-        style={{
-          'outlineStyle': 'solid', 
-          'outlineWidth': '1px',
-          'outlineColor': 'grey'
-        }}>
+      <div>
 
         <StarRatingComponent 
           editing={false}
