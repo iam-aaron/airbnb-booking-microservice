@@ -1,13 +1,13 @@
-# Project Name
+# Hacknb
 
 > Project description
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/hacknb/repo
+  - https://github.com/hacknb/repo
+  - https://github.com/hacknb/repo
+  - https://github.com/hacknb/repo
 
 ## Table of Contents
 
