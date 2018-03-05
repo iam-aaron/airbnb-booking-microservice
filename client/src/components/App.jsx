@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import Calendar from 'react-calendar';
+import ClickOutHandler from 'react-onclickout';
+import StarRating from './StarRating.jsx';
 import MyCalendar from './MyCalendar.jsx';
 import Guests from './Guests.jsx';
-import StarRating from './StarRating.jsx';
-import $ from 'jquery';
-import ClickOutHandler from 'react-onclickout';
+import PricingTotal from './PricingTotal.jsx';
 
 class App extends React.Component {
 
@@ -15,68 +16,36 @@ class App extends React.Component {
       showCalendar: false,
       showGuests: false,
       listingId: props.listingId,
-      // availableDays: [],
-      // starRating: 0,
       listingInfo: {},
-      guests: 1
+      adults: 1,
+      children: 0,
+      infants: 0,
+      startDate: null,
+      endDate: null
     };
-    this.handleClickCheckIn = this.handleClickCheckIn.bind(this);
-    this.handleClickCheckOut = this.handleClickCheckOut.bind(this);
-    this.handleCalendarClickOut = this.handleCalendarClickOut.bind(this);
     this.handleGuestsClick = this.handleGuestsClick.bind(this);
-    this.handleGuestsClickOut = this.handleGuestsClickOut.bind(this);
-    this.closeGuests = this.closeGuests.bind(this);
+    this.updateGuestsTotal = this.updateGuestsTotal.bind(this);
+    this.triggerPricingTotal = this.triggerPricingTotal.bind(this);
   }
 
   componentDidMount() {
     this.getBookingInfo(this.state.listingId);
   }
 
-  handleClickCheckIn() {
+  handleGuestsClick(boolean) {
     this.setState({
-      showCalendar: true
+      showGuests: boolean
     });
   }
 
-  handleClickCheckOut() {
-    this.setState({
-      showCalendar: true
-    });
-  }
-
-  handleCalendarClickOut() {
-    this.setState({
-      showCalendar: false
-    });
-  }
-  handleGuestsClick() {
-    this.setState({
-      showGuests: true
-    });
-  }
-  handleGuestsClickOut() {
-
-    this.setState({
-      showGuests: false
-    });
-  }
-  closeGuests() {
-    this.setState({
-      showGuests: false
-    });
-  }
   getBookingInfo() {
     $.ajax({
       method: 'GET',
       url: `http://127.0.0.1:8080/rooms/${this.props.listingId}/bookings`,
-      // params: JSON.stringify(params),
       success: (data) => {
-        console.log('Ajax call successful!');
+        console.log('Ajax success!');
         this.setState({
-          listingInfo: (data)
-          // listingInfo: JSON.parse(data)
-          // availableDays: data.availableDays,
-          // starRating: data.star_rating
+          listingInfo: data
         });
       },
       error: (err) => {
@@ -85,54 +54,71 @@ class App extends React.Component {
     });
   }
 
+  updateGuestsTotal(ageGroup, total) {
+    this.state[ageGroup] = total;
+    this.setState({});
+  }
+
+  triggerPricingTotal(array) {
+    this.setState({
+      startDate: array[0],
+      endDate: array[1]
+    });
+  }
+
   render() {
     return (
       <div>
-
         <div>
           ${this.state.listingInfo.price} per night
         </div>
-
         <StarRating 
-          rating={this.state.listingInfo.star_rating}/><br></br>
-
+          rating={this.state.listingInfo.star_rating}/>
+        
+        <br></br>
         <div>Dates</div>
+        <MyCalendar 
+          availableDays={this.state.listingInfo.available_days}
+          showCalendar={this.state.showCalendar}
+          triggerPricingTotal={this.triggerPricingTotal}
+        />
 
-        <ClickOutHandler onClickOut={this.handleCalendarClickOut}>
+        <br></br>
+        <div> 
           <div>
-            <button 
-              onClick={this.handleClickCheckIn}>Check-in</button>
-            <button
-              onClick={this.handleClickCheckOut}>Check-out</button>
+            <button onClick={this.handleGuestsClick.bind(this, true)}> 
+              {this.state.guests} Guest{'s'}
+            </button>
           </div>
-
-          {!this.state.showCalendar 
-            ? <div>Calendar Not Shown</div>
-            : <MyCalendar 
-              availableDays={this.state.listingInfo.available_days}/>
+          <br></br>
+          {!this.state.showGuests
+            ? <div>Guests Not Shown</div>
+            : <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
+              <div>    
+                <Guests 
+                  handleClose={this.handleGuestsClick.bind(this, false)}
+                  updateGuestsTotal={this.updateGuestsTotal}/>
+              </div>
+            </ClickOutHandler> 
           }
-        </ClickOutHandler> <br></br>
+          <br></br>
+        </div> 
 
-        <div>
+        <br></br>
+        <PricingTotal 
+          adults={this.state.adults}
+          children={this.state.children}
+          infants={this.state.infants}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          price={this.state.listingInfo.price}
+          weekendPrice={this.state.listingInfo.listing_weekend_price_native === null 
+            ? this.state.listingInfo.price 
+            : this.state.listingInfo.listing_weekend_price_native}
+          cleaningFee={this.state.listingInfo.cleaning_fee_native}
+          listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native}
+        />
 
-          <div>
-            Guests
-          </div>
-
-          <button onClick={this.handleGuestsClick}> 
-            {this.state.guests} Guests
-          </button>
-
-        </div>
-
-        {!this.state.showGuests
-          ? <div>Guests Not Shown</div>
-          : <ClickOutHandler onClickOut={this.handleGuestsClickOut}>
-            <div>    
-              <Guests handleClose={this.closeGuests}/>
-            </div>
-          </ClickOutHandler> 
-        }
       </div>
     );
   }

@@ -1,37 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StarRatingComponent from 'react-star-rating-component';
+import ReactStarRating from 'react-star-rating-component';
 
-class StarRating extends React.Component {
-  constructor(props) {
-    super(props);
+var StarRating = (props) => (
 
-    this.state = {
-      rating: 
-      null
-      // props.rating
-    };
-  }
+  <ReactStarRating 
+    editing={false}
+    emptyStarColor="#E3E3E3"
+    name="rating"
+    starColor="#238A88"
+    starCount={5}
+    value={props.rating}
+  />
+  
+);
 
-  componentDidMount() {
-    this.setState({
-      rating: this.props.rating
-    });
-  }
-
-  render() {
-    return (                
-      <div>
-
-        <StarRatingComponent 
-          editing={false}
-          starCount={5}
-          value={this.state.rating}
-          name='rating'
-        />
-        <span>{}# Ratings</span>
-      </div>
-    );
-  }
-}
 export default StarRating;
