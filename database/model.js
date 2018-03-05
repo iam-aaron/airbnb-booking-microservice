@@ -20,8 +20,7 @@ var BookingSchema = mongoose.Schema({
   'listing_price_for_extra_person_native': Number,
 
   'available_days': Array,
-}
-);
+});
 	
 const BookingModel = mongoose.model('Booking', BookingSchema);
 
