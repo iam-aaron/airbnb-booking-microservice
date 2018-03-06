@@ -20,7 +20,7 @@ class App extends React.Component {
       adults: 1,
       children: 0,
       infants: 0,
-      startDate: null,
+      startDate: new Date(),
       endDate: null
     };
     this.handleGuestsClick = this.handleGuestsClick.bind(this);
@@ -41,12 +41,17 @@ class App extends React.Component {
   getBookingInfo() {
     $.ajax({
       method: 'GET',
-      url: `http://127.0.0.1:8080/rooms/${this.props.listingId}/bookings`,
+      url: `http://127.0.0.1:3003/rooms/${this.props.listingId}/bookings`,
       success: (data) => {
         console.log('Ajax success!');
+        let dates = data.available_days.map( x => new Date(x));
+        data.available_days = dates;
         this.setState({
           listingInfo: data
         });
+
+        console.log('type', data.available_days);
+        // console.log('type', data.available_days[0]);
       },
       error: (err) => {
         console.log('Ajax error!', err);
@@ -68,56 +73,63 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app-container">
         <div>
-          ${this.state.listingInfo.price} per night
+          <span className='bigger-text'>${this.state.listingInfo.price}
+          </span> per night
         </div>
-        <StarRating 
+        <StarRating
           rating={this.state.listingInfo.star_rating}/>
-        
+        <span>{this.state.listingInfo.reviews_count}</span>
         <br></br>
         <div>Dates</div>
-        <MyCalendar 
+        <MyCalendar
           availableDays={this.state.listingInfo.available_days}
           showCalendar={this.state.showCalendar}
           triggerPricingTotal={this.triggerPricingTotal}
         />
 
         <br></br>
-        <div> 
+        <div>
           <div>
-            <button onClick={this.handleGuestsClick.bind(this, true)}> 
+            <button onClick={this.handleGuestsClick.bind(this, true)}>
               {this.state.guests} Guest{'s'}
             </button>
           </div>
-          <br></br>
           {!this.state.showGuests
             ? <div>Guests Not Shown</div>
             : <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
-              <div>    
-                <Guests 
+              <div>
+                <Guests
+                  personCapacity={this.state.listingInfo.person_capacity}
                   handleClose={this.handleGuestsClick.bind(this, false)}
                   updateGuestsTotal={this.updateGuestsTotal}/>
               </div>
-            </ClickOutHandler> 
+            </ClickOutHandler>
           }
-          <br></br>
-        </div> 
+        </div>
 
         <br></br>
-        <PricingTotal 
+        <PricingTotal
           adults={this.state.adults}
           children={this.state.children}
           infants={this.state.infants}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           price={this.state.listingInfo.price}
-          weekendPrice={this.state.listingInfo.listing_weekend_price_native === null 
-            ? this.state.listingInfo.price 
+          weekendPrice={this.state.listingInfo.listing_weekend_price_native === null
+            ? this.state.listingInfo.price
             : this.state.listingInfo.listing_weekend_price_native}
           cleaningFee={this.state.listingInfo.cleaning_fee_native}
           listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native}
+          city={this.state.listingInfo.city}
+          weeklyPriceFactor={this.state.weekly_price_factor}
         />
+
+        <div>
+          <button className='book-now'>Book</button>
+          <div>You won't be charged yet</div>
+        </div>
 
       </div>
     );

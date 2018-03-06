@@ -9,46 +9,99 @@ class Guests extends React.Component {
       children: 0,
       infants: 0,
     };
-    this.onSignClick = this.onSignClick.bind(this);
+    this.onGuestPickerClick = this.onGuestPickerClick.bind(this);
   }
 
-  onSignClick(e) {
-    let delta = e.target.value === '+' ? 1 : -1; 
-    let ageGroup = e.target.parentNode.className.slice(7);
-    this.setState({});
-    let min = ageGroup === 'adults' ? 1 : 0;
-    this.state[ageGroup] = Math.max(min, this.state[ageGroup] + delta);
-    this.props.updateGuestsTotal(ageGroup, this.state[ageGroup]);
+  onGuestPickerClick(sign, ageGroup, e) {
+    let capacity = this.props.personCapacity;
+    let currentAdults = this.state.adults;
+    let currentChildren = this.state.children;
+    let currentInfants = this.state.infants;
+    switch(ageGroup) {
+    case 'adults':
+      this.setState({
+        adults: Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren)
+      });
+      break;
+    case 'children':
+      this.setState({
+        children: Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults)
+      });
+      break;
+    case 'infants':
+      this.setState({
+        infants: Math.min(Math.max(currentInfants + 1 * sign, 0), 5)
+      });
+      break;
+    }
+    // console.log(capacity);
+    // this.props.updateGuestsTotal(ageGroup, this.state[ageGroup]);
   }
 
   render() {
     return (
-      <div id='guestsBox'>
+      <div className='guest-picker'>
 
-        <br></br>
-        <div className='guests-adults'>
-          <span>Adults</span>
-          <input type='button' value='-' onClick={this.onSignClick}></input>
-          <span>{this.state.adults}</span>
-          <input type='button' value='+' onClick={this.onSignClick}></input>
-        </div> 
+        <table>
+          <tbody>
 
-        <div className='guests-children'>
-          <span>Children</span>
-          <input type='button' value='-' onClick={this.onSignClick}></input>
-          <span>{this.state.children}</span>
-          <input type='button' value='+' onClick={this.onSignClick}></input>
-        </div>
-        
-        <div className='guests-infants'>
-          <span>Infants</span>
-          <input type='button' value='-' onClick={this.onSignClick}></input>
-          <span>{this.state.infants}</span>
-          <input type='button' value='+' onClick={this.onSignClick}></input>
-        </div>
+            <tr>
+              <td>
+              Adults
+              </td>
+              <td>
+                <input
+                  className='increment-btn' type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'adults')}></input>
+              </td>
+              <td>
+                {this.state.adults}
+              </td>
+              <td>
+                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'adults')}></input>
+              </td>
+            </tr>
 
-        <br></br>
-        <button onClick={this.props.handleClose}>Close</button>
+            <tr>
+              <td>
+                Children
+                <div className='caption'>Ages 2-12</div>
+              </td>
+              <td>
+                <input type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'children')}></input>
+              </td>
+              <td>
+                {this.state.children}
+              </td>
+              <td>
+                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'children')}></input>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+              Infants
+                <p className='caption'>Under 2</p>
+              </td>
+              <td>
+                <input type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'infants')}></input>
+              </td>
+              <td>
+                {this.state.infants}
+              </td>
+              <td>
+                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'infants')}></input>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+        <p className='caption'>
+          {this.props.personCapacity} guests maximum. Infants don’t count toward the number of guests.
+        </p>
+
+        <button className='guest-close-btn' onClick={this.props.handleClose}>Close</button>
 
       </div>
     );
