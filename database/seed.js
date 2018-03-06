@@ -2,6 +2,8 @@ let mongoose = require('mongoose');
 let Bookings = require('./model.js');
 let data = JSON.parse(require('./allListings.json'));
 let Promise = require('bluebird');
+// let BookingModel = require('./model.js');
+mongoose.Promise = Promise;
 
 var sampleAvailableDays = [
   new Date(2018, 2, 7), new Date(2018, 2, 8), new Date(2018, 2, 9), 
@@ -16,23 +18,46 @@ var sampleAvailableDays = [
 ];
 
 
-var seedDb = function(data) {
-  mongoose.connect('mongodb://localhost/airbnb_bookings')
-    .then((connection) => {
-      connect = connection;
-      var BookingModel = Bookings.BookingModel;
-      mongoose.Promise.map(data, (booking) => {
+// var seedDb = function(data) {
+//   let connect;
+//   let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
+//     .then((c) => {
+//       connect = c;
+//       // var BookingModel = Bookings.BookingModel;
+//       mongoose.Promise.map(data, (booking) => {
+//         booking.listing.available_days = sampleAvailableDays;
+//         return BookingModel.insertOne(booking.listing);
+//       })
+//         .then(() => {
+//           return connect.disconnect();
+//         })
+//         .catch((err) => console.log('Error: listing insert', err));
+//     })
+//     .catch((err) => {
+//       console.log('Error: connection', err);
+//     });
+// };
+
+
+const seedDb = function(data) {
+  let conn;
+  let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
+    .then(c => {
+      conn = c;
+      Promise.map(data, (booking) => {
         booking.listing.available_days = sampleAvailableDays;
-        return BookingModel.create(booking.listing);
+        return Bookings.insertOne(booking.listing);
       })
-        .then(() => {
-          return connect.disconnect();
-        })
-        .catch((err) => console.log('Error: listing insert', err));
+      .then(() => {
+        return conn.disconnect();
+      })
+      .catch(err => console.log('Error inserting data ', err));
     })
-    .catch((err) => {
-      console.log('Error: connection', err);
+    .catch(err => {
+      console.log('Error opening the connection ', err);
     });
 };
+
+
 
 seedDb(data);
