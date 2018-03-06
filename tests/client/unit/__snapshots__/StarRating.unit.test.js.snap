@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarRating should render correctly 1`] = `
+<div>
+  <StarRatingComponent
+    editing={false}
+    emptyStarColor="#333"
+    name="rating"
+    starColor="#ffb400"
+    starCount={5}
+    value={0}
+  />
+  <span>
+    # Ratings
+  </span>
+</div>
+`;
