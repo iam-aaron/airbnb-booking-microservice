@@ -7,10 +7,11 @@ class PricingTotal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showPricing: false,
       startDate: null,
       endDate: null,
       totalNights: null,
-
+  
       adults: 1,
       children: 0,
       infants: 0,
@@ -31,21 +32,25 @@ class PricingTotal extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.getOccupanyTaxPercentage(this.props.city);
-  }
+  }  
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.startDate != null) {
-      this.setState({
-        startDate: nextProps.startDate,
-        endDate: nextProps.endDate,
-        adults: nextProps.adults,
-        children: nextProps.children,
-        infants: nextProps.infants,
-        price: nextProps.price,
-        weekendPrice: nextProps.weekendPrice
-      });
+    this.setState({
+      startDate: nextProps.startDate,
+      endDate: nextProps.endDate,
+      adults: nextProps.adults,
+      children: nextProps.children,
+      infants: nextProps.infants,
+      price: nextProps.price,
+      weekendPrice: nextProps.weekendPrice
+    });
+    if (nextProps.showPricing) {
       this.calculateTotals(nextProps.startDate, nextProps.endDate);
+      this.setState({
+        showPricing: true
+      });
     }
   }
 
@@ -54,7 +59,12 @@ class PricingTotal extends React.Component {
   }
 
   calculateTotals(startDate, endDate) {
-    var countWeekendDays = function countWeekendDays(startDay, totalNights) {
+    if (endDate < startDate) {
+      let temp = endDate;
+      endDate = startDate;
+      startDate = temp;
+    }
+    let countWeekendDays = function countWeekendDays(startDay, totalNights) {
       return _.range(startDay.getDay(), startDay.getDay() + totalNights)
         .map((x) => x % 7)
         .filter((x) => (x === 6 || x === 5))
@@ -62,12 +72,13 @@ class PricingTotal extends React.Component {
     };
 
     const millisecondsInDay = 86400000;
-    let totalNights = Math.round((endDate - startDate) / millisecondsInDay) - 1;
-    let weekendDays = countWeekendDays(startDate, totalNights);
+    console.log(endDate, startDate);
+    let totalNights = Math.round((endDate - startDate) / millisecondsInDay);
+    let weekendDays = countWeekendDays(startDate, totalNights); 
     let weekdayDays = totalNights - weekendDays;
 
     let totalNightsPrice = this.state.weekendPrice * weekdayDays + this.state.price * weekdayDays;
-
+   
     this.setState({
       totalNightsPrice: totalNightsPrice,
       totalNights: totalNights,
@@ -77,52 +88,51 @@ class PricingTotal extends React.Component {
   }
 
   getOccupanyTaxPercentage(city) {
-    //TO-DO;
-    let percent = 0.075;
+    let percent = 0.075; //hard-coded
     this.setState({
       occupancyTaxPercentage: percent
     });
   }
 
   render() {
-    let totalNightsPrice; let totalNights; let occupancyTaxPercentage; let startDate;
-    ({totalNights, totalNightsPrice, occupancyTaxPercentage, startDate} = this.state);
+    let totalNightsPrice; let totalNights; let occupancyTaxPercentage; let startDate; let showPricing;
+    ({totalNights, totalNightsPrice, occupancyTaxPercentage, startDate, showPricing} = this.state);
     let nightlyPrice = Math.round((totalNightsPrice / totalNights) * 100) / 100;
 
 
-    if (!startDate) {
+    if (!showPricing) {
       return null;
     } else {
       return (
-        <div>
-          <table>
-            <tbody>
+        <div className='pricing-container'>
+          <table className='pricing-table'>
+            <tbody className='table-body'>
 
-              <tr>
+              <tr className='bottom-separator'>
                 <td>$ {Math.round(nightlyPrice)} ⨯ {totalNights} Night{totalNights > 1 ? 's' : null}
                 </td>
-                <td>${Math.round(totalNightsPrice)}
+                <td className='price-row'>${Math.round(totalNightsPrice)}
                 </td>
               </tr>
 
-              <tr>
+              <tr className='bottom-separator'>
                 <td>Long stay discount
                 </td>
-                <td>${Math.round(totalNights > 4 ? this.props.weeklyPriceFactor * -totalNightsPrice : 0)}</td>
+                <td className='price-row'>${Math.round(totalNights > 4 ? (this.props.weeklyPriceFactor - 1) * totalNightsPrice : 0)}</td>
               </tr>
 
-              <tr>
+              <tr className='bottom-separator'>
                 <td>Cleaning fee
                 <div className='help-tip'>
                   <p>One time fee charged by host to cover the cost of cleaning their space.
                   </p>
                 </div>
                 </td>
-                <td>${this.props.cleaningFee}
+                <td className='price-row'>${this.props.cleaningFee}
                 </td>
               </tr>
 
-              <tr>
+              <tr className='bottom-separator'>
                 <td>Service fee
 
                 <div className='help-tip'>
@@ -131,28 +141,28 @@ class PricingTotal extends React.Component {
                 </div>
 
                 </td>
-                <td>${Math.round(totalNightsPrice * .05)}
+                <td className='price-row'>${Math.round(totalNightsPrice * .05)}
                 </td>
               </tr>
 
-              <tr>
+              <tr className='bottom-separator'>
                 <td>Occupancy taxes
 
                 <div className='help-tip'>
-                  <p>Accommodations Tax ({this.props.city})
+                  <p>Accommodations Tax ({this.props.city}) 
                   <br></br>
                   <a href='#'>Learn More</a>
                   </p>
                 </div>
 
                 </td>
-                <td>${Math.round(occupancyTaxPercentage * totalNightsPrice)}
+                <td className='price-row'>${Math.round(occupancyTaxPercentage * totalNightsPrice)} 
                 </td>
               </tr>
 
-              <tr>
-                <td>Total</td>
-                <td>${Math.round(totalNightsPrice + this.props.cleaningFee + totalNightsPrice * .05 + occupancyTaxPercentage * totalNightsPrice)}
+              <tr className='pricing-total'>
+                <td >Total</td>
+                <td className='price-row'>${Math.round(totalNightsPrice + this.props.cleaningFee + totalNightsPrice * .05 + occupancyTaxPercentage * totalNightsPrice)}
                 </td>
               </tr>
 

@@ -2,43 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar';
 import ClickOutHandler from 'react-onclickout';
-import CheckButtons from './CheckButtons.jsx';
 
 class MyCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showCalendar: props.showCalendar,
-      checkIn: 'Check In',
+      checkInDisplayText: 'Check In',
       startDate: null,
-      checkOut: 'Check Out',
+      checkOutDisplayText: 'Check Out',
       endDate: null,
       currentlyChoosingCheckIn: true,
       date: new Date(),
-      availableDays:
+      availableDays: 
         props.availableDays,
-      // ['2/27/2018', '2/28/2018', '3/1/2018', '3/4/2018', '3/5/2018',
-      //   '3/6/2018', '3/7/2018', '3/10/2018', '3/11/2018', '3/12/2018'],
-      // [new Date(2018, 2, 7), new Date(2018, 2, 8), new Date(2018, 2, 9),
-      //   new Date(2018, 2, 11), new Date(2018, 2, 12), new Date(2018, 2, 13)],
-
-      activeDays:
+      activeDays: 
         props.availableDays,
 
-      // [new Date(2018, 2, 7), new Date(2018, 2, 8), new Date(2018, 2, 9),
-      // new Date(2018, 2, 11), new Date(2018, 2, 12), new Date(2018, 2, 13)],
     };
 
     this.onChange = this.onChange.bind(this);
     this.handleClickDay = this.handleClickDay.bind(this);
-    this.showCalendar = this.showCalendar.bind(this);
     this.updateActiveDays = this.updateActiveDays.bind(this);
   }
 
   componentDidMount() {
     this.setState({
     });
-  }
+  }  
   componentWillReceiveProps(nextProps) {
     this.setState({
       availableDays: nextProps.availableDays,
@@ -47,28 +38,45 @@ class MyCalendar extends React.Component {
   }
 
   onChange(array) {
-    // this.validate
-    // this.setState({
-    //   // startDate: array[0],
-    //   // endDate: array[1],
-    //   showCalendar: false
-    // });
-
-    this.props.triggerPricingTotal(array);
   }
 
-  showCalendar(boolean, inOrOut) {
+  handleCheckInClick() {
     this.setState({
-      showCalendar: boolean,
-      currentlyChoosingCheckIn: inOrOut === 'in' ? true : false
+      currentlyChoosingCheckIn: true
+    });
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+    if (this.state.startDate && this.state.endDate) {
+      this.setState({
+        startDate: null,
+        endDate: null,
+      });
+    }
+  }
+
+  handleCheckOutClick() {
+    this.setState({
+      currentlyChoosingCheckIn: false,
+    });
+    if (this.state.endDate) {
+      this.updateActiveDays(this.state.startDate);
+    }
+
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+  }
+  showCalendar(boolean) {
+    let modal = document.getElementById('myModal');
+    boolean === true ? modal.style.display = 'block' : modal.style.display = 'none';
+    this.setState({
     });
   }
 
   updateActiveDays(clickedDate) {
-    var availString = this.state.availableDays.map(x => x.toLocaleDateString());
-    var newAvail = [];
-    var increment = 1; var decrement = -1;
-    var getDatePlus = function(date, i) {
+    let availString = this.state.availableDays.map(x => x.toLocaleDateString());
+    let newAvail = [];
+    let increment = 1; let decrement = -1;
+    let getDatePlus = function(date, i) {
       return new Date(date.getFullYear(), date.getMonth(), date.getDate() + i);
     };
     while (availString.includes(getDatePlus(clickedDate, increment).toLocaleDateString())) {
@@ -83,27 +91,14 @@ class MyCalendar extends React.Component {
       activeDays: newAvail,
     });
 
-    if (this.state.currentlyChoosingCheckIn) {
-      this.setState({
-        startDate: clickedDate,
-        currentlyChoosingCheckIn: false,
-      });
-    } else {
-      this.setState({
-        endDate: clickedDate,
-        showCalendar: false,
-      });
-    }
-
-
     // this.props.triggerPricingTotal([this.state.startDate, this.state.endDate]);
-    this.handleIfStartGreaterThanEnd();
+    // this.handleIfStartGreaterThanEnd();
   }
-
+   
   handleIfStartGreaterThanEnd() {
     if (this.state.startDate && this.state.endDate) {
       if (this.state.endDate < this.state.startDate) {
-        var tempDate = this.state.endDate;
+        let tempDate = this.state.endDate;
         this.setState({
           endate: this.state.startDate,
           startDate: tempDate
@@ -116,50 +111,124 @@ class MyCalendar extends React.Component {
   }
 
   handleClickDay(date) {
-    this.updateActiveDays(date);
+
+    if (this.state.currentlyChoosingCheckIn) { // curr choosing check in
+      if (this.state.startDate) {
+        this.setState({
+          endDate: null,
+          startDate: date,
+          currentlyChoosingCheckIn: false,
+        });
+      }
+
+      else if (this.state.endDate) {
+        this.state.endDate < date //check if should switch
+          ? this.setState({startDate: this.state.endDate, endDate: date})
+          : null;
+        this.showCalendar(false);
+        this.props.triggerPricingTotal(date, this.state.endDate);
+
+
+      } else {
+        this.setState({
+          startDate: date,
+          currentlyChoosingCheckIn: false,
+        });
+        this.updateActiveDays(date);
+      }
+    } 
+
+
+    else { // curr choosing check out
+
+      this.setState({
+        endDate: date,
+      });
+
+      if (this.state.startDate) { // if you just chose out, and in exists
+        this.state.startDate > date //check if should switch
+          ? this.setState({startDate: date, endDate: this.state.startDate})
+          : null;
+        this.showCalendar(false);
+        this.props.triggerPricingTotal(this.state.startDate, date);
+
+
+      } else { // just chose out, haven't chosen in
+        this.setState({currentlyChoosingCheckIn: true});
+        this.updateActiveDays(date);
+      }
+    }
   }
 
   render() {
     return (
-      <div>
+      <div className='calendar-container'>
 
-        <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>
+        <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>  
 
-          <button onClick={this.showCalendar.bind(this, true, 'in')}>
-            {!this.state.startDate
-              ? this.state.checkIn
-              : this.state.startDate.toLocaleDateString()
-            }</button>
-          <button onClick={this.showCalendar.bind(this, true, 'out')}>
-            {!this.state.endDate
-              ? this.state.checkOut
-              : this.state.endDate.toLocaleDateString()
-            }</button>
+          <div className='calendar-button-holder selector-box'>
+            <button className='calendar-btn' onClick={this.handleCheckInClick.bind(this)}>
+              {
+                !this.state.startDate 
+                  ? this.state.checkInDisplayText 
+                  : this.state.startDate.toLocaleDateString()
+              }
 
-          {this.state.showCalendar === true
-            ?
-            <Calendar
-              returnValue={'range'}
-              calendarType={'US'}
-              selectRange={true}
-              onClickDay={this.handleClickDay}
-              prev2ButtonDisabled={true}
-              showNeighboringMonth={false}
-              onChange={this.onChange}
-              tileDisabled={({date}) => {
-                return !this.state.activeDays.map((date) => date.toLocaleDateString())
-                  .includes(date.toLocaleDateString());
-              }}
-              activeStartDate={!this.state.startDate ? new Date() : this.state.startDate}
-              value={[
-                (!this.state.startDate ? new Date() : this.state.startDate),
-                (!this.state.endDate ? null : this.state.endDate)
-              ]}/>
-            :
-            <div>Calendar hidden</div>
+            </button>
+            <button className='calendar-btn' onClick={this.handleCheckOutClick.bind(this)}>
+              {
+                !this.state.endDate 
+                  ? this.state.checkOutDisplayText 
+                  : this.state.endDate.toLocaleDateString()
+              }
+            </button>
+          </div>
+
+          {
+            <div id='myModal' className='modal'>
+
+              <Calendar 
+                returnValue={'range'}
+                calendarType={'US'}
+                selectRange={true}
+                onClickDay={this.handleClickDay}
+                prev2ButtonDisabled={true}
+                showNeighboringMonth={false}
+                onChange={this.onChange}
+                formatS
+                tileDisabled={({date}) => {
+                if (!this.state.activeDays) return true;
+                  return !this.state.activeDays.map((date) => date.toLocaleDateString())
+                    .includes(date.toLocaleDateString());
+                }}
+                value={
+                  [this.state.startDate || this.state.endDate || new Date(), 
+                    this.state.endDate || this.state.startDate]
+
+                }/> 
+              <div className='caption'>
+                Minimum stay varies
+              </div >
+              <div className='caption'>
+                Updated today
+              </div>
+
+              {this.state.startDate || this.state.endDate 
+                ? 
+                <button className='clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
+                  Clear Dates
+                </button>
+                :
+                <div></div>
+              }
+
+            </div>
+            
+            /*:
+            <div>Calendar hidden</div>*/
           }
-
-        </ClickOutHandler>
+          
+        </ClickOutHandler>  
 
       </div>
     );
