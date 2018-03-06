@@ -22,36 +22,36 @@ class Guests extends React.Component {
       this.setState({
         adults: Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren)
       });
+      this.props.updateGuestsTotal(ageGroup, Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren))
       break;
     case 'children':
       this.setState({
         children: Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults)
-      });
+      });     
+      this.props.updateGuestsTotal(ageGroup, Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults))     
       break;
     case 'infants':
       this.setState({
         infants: Math.min(Math.max(currentInfants + 1 * sign, 0), 5)
-      });
+      });     
       break;
     }
-    // console.log(capacity);
-    // this.props.updateGuestsTotal(ageGroup, this.state[ageGroup]);
   }
 
   render() {
     return (
-      <div className='guest-picker'>
+      <div className='guest-picker-container'>
 
-        <table>
+        <table className='guest-picker'>
           <tbody>
-
+       
             <tr>
               <td>
               Adults
               </td>
               <td>
-                <input
-                  className='increment-btn' type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'adults')}></input>
+                <input 
+                  type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'adults')}></input>
               </td>
               <td>
                 {this.state.adults}
@@ -63,7 +63,7 @@ class Guests extends React.Component {
 
             <tr>
               <td>
-                Children
+                Children 
                 <div className='caption'>Ages 2-12</div>
               </td>
               <td>
@@ -100,7 +100,7 @@ class Guests extends React.Component {
         <p className='caption'>
           {this.props.personCapacity} guests maximum. Infants don’t count toward the number of guests.
         </p>
-
+        
         <button className='guest-close-btn' onClick={this.props.handleClose}>Close</button>
 
       </div>
