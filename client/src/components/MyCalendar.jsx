@@ -44,7 +44,7 @@ class MyCalendar extends React.Component {
     this.setState({
       currentlyChoosingCheckIn: true
     });
-    var modal = document.getElementById('myModal');
+    let modal = document.getElementById('myModal');
     modal.style.display = 'block';
     if (this.state.startDate && this.state.endDate) {
       this.setState({
@@ -62,21 +62,21 @@ class MyCalendar extends React.Component {
       this.updateActiveDays(this.state.startDate);
     }
 
-    var modal = document.getElementById('myModal');
+    let modal = document.getElementById('myModal');
     modal.style.display = 'block';
   }
   showCalendar(boolean) {
-    var modal = document.getElementById('myModal');
+    let modal = document.getElementById('myModal');
     boolean === true ? modal.style.display = 'block' : modal.style.display = 'none';
     this.setState({
     });
   }
 
   updateActiveDays(clickedDate) {
-    var availString = this.state.availableDays.map(x => x.toLocaleDateString());
-    var newAvail = [];
-    var increment = 1; var decrement = -1;
-    var getDatePlus = function(date, i) {
+    let availString = this.state.availableDays.map(x => x.toLocaleDateString());
+    let newAvail = [];
+    let increment = 1; let decrement = -1;
+    let getDatePlus = function(date, i) {
       return new Date(date.getFullYear(), date.getMonth(), date.getDate() + i);
     };
     while (availString.includes(getDatePlus(clickedDate, increment).toLocaleDateString())) {
@@ -98,7 +98,7 @@ class MyCalendar extends React.Component {
   handleIfStartGreaterThanEnd() {
     if (this.state.startDate && this.state.endDate) {
       if (this.state.endDate < this.state.startDate) {
-        var tempDate = this.state.endDate;
+        let tempDate = this.state.endDate;
         this.setState({
           endate: this.state.startDate,
           startDate: tempDate

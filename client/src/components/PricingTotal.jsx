@@ -52,7 +52,6 @@ class PricingTotal extends React.Component {
         showPricing: true
       });
     }
-    // }
   }
 
   onChange(array) {
@@ -61,11 +60,11 @@ class PricingTotal extends React.Component {
 
   calculateTotals(startDate, endDate) {
     if (endDate < startDate) {
-      var temp = endDate;
+      let temp = endDate;
       endDate = startDate;
       startDate = temp;
     }
-    var countWeekendDays = function countWeekendDays(startDay, totalNights) {
+    let countWeekendDays = function countWeekendDays(startDay, totalNights) {
       return _.range(startDay.getDay(), startDay.getDay() + totalNights)
         .map((x) => x % 7)
         .filter((x) => (x === 6 || x === 5))
