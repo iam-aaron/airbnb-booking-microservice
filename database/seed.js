@@ -18,46 +18,25 @@ var sampleAvailableDays = [
 ];
 
 
-// var seedDb = function(data) {
-//   let connect;
-//   let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
-//     .then((c) => {
-//       connect = c;
-//       // var BookingModel = Bookings.BookingModel;
-//       mongoose.Promise.map(data, (booking) => {
-//         booking.listing.available_days = sampleAvailableDays;
-//         return BookingModel.insertOne(booking.listing);
-//       })
-//         .then(() => {
-//           return connect.disconnect();
-//         })
-//         .catch((err) => console.log('Error: listing insert', err));
-//     })
-//     .catch((err) => {
-//       console.log('Error: connection', err);
-//     });
-// };
-
-
-const seedDb = function(data) {
-  let conn;
+var seedDb = function(data) {
+  let connect;
   let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
-    .then(c => {
-      conn = c;
-      Promise.map(data, (booking) => {
+    .then((c) => {
+      connect = c;
+      // var BookingModel = Bookings.BookingModel;
+      mongoose.Promise.map(data, (booking) => {
         booking.listing.available_days = sampleAvailableDays;
         return Bookings.insertOne(booking.listing);
       })
-      .then(() => {
-        return conn.disconnect();
-      })
-      .catch(err => console.log('Error inserting data ', err));
+        .then(() => {
+          return connect.disconnect();
+        })
+        .catch((err) => console.log('Error: listing insert', err));
     })
-    .catch(err => {
-      console.log('Error opening the connection ', err);
+    .catch((err) => {
+      console.log('Error: connection', err);
     });
 };
-
 
 
 seedDb(data);
