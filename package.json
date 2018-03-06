@@ -1,13 +1,31 @@
 {
-  "name": "",
+  "name": "Hackbnb",
   "version": "",
-  "description": "",
+  "description": "bookings-widget-service",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ],
+    "moduleNameMapper": {
+      "^react(.*)$": "<rootDir>/vendor/react-master$1",
+      "^config$": "<rootDir>/configs/app-config.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "dependencies": {
     "babel-loader": "^7.1.2",
     "bluebird": "^3.5.1",
@@ -23,18 +41,27 @@
     "react-onclickout": "^2.0.8",
     "react-star-rating-component": "^1.3.0",
     "react2": "^15.3.1",
-    "style-loader": "^0.20.2"
+    "style-loader": "^0.20.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-jest": "^22.4.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.10",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.2",
+    "regenerator-runtime": "^0.11.1",
     "to-string-loader": "^1.1.5",
     "webpack": "^3.11.0"
   }
