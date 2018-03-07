@@ -5,6 +5,7 @@ $grey: #c4c4c4;
 $dark-grey: #484848;
 $padding: 7px;
 
+
 body {
   font-family: $font-family;
   color: $dark-grey;
@@ -26,14 +27,22 @@ input {
   cursor: pointer;
 }
 
-.header {
-  font-size: 16px;
-}
-
 %caption-font {
   color: $dark-grey;
   font-family: $font-family;
   font-size: 10px;
+}
+.header {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.bold {
+  font-weight: 400;
+}
+
+.active-tile {
+  color:red;
+  background-color: blue
 }
 
 .caption {
@@ -46,14 +55,14 @@ input {
     position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
-    padding-left: 25px;
+    padding-left: 15px;
     left: 0;
     top: 0;
-    width: 200px; /* Full width */
-    height: 200px; /* Full height */
+    max-width: 200px; /* Full width */
+    max-height: 200px; /* Full height */
     /*overflow: auto;  Enable scroll if needed */
     /*background-color: rgb(0,0,0); /* Fallback color */
-    background-color: none;  /*Black w/ opacity*/
+    /*color: red;*/
 }
 
 .book-now {
@@ -65,7 +74,7 @@ input {
   background-color: $red;
   color: white;
   width: 90%;
-  height: 20px;
+  height: 24px;
   border-radius: 4px;
   border: 0px;
 }
@@ -73,7 +82,7 @@ input {
 .guest-picker-container {
   border: 1px solid $grey;
   padding: 3px;
-  width: 90%;
+  width: 94%;
   text-align: center;
 }
 
@@ -93,11 +102,12 @@ input {
 .guest-picker-container td{
   height: 35px;
 
+
 }
 
 .guest-close-btn {
   border: none;
-  align: right;
+  align-content: right;
   /* position: relative; */
   align-content: right;
   color: #007a87;
@@ -141,11 +151,15 @@ input {
   display: none;
   text-align: left;
   background-color: none;
-  padding: 2px;
+  padding: 5px;
   width: 120px;
   position: fixed;
   border-radius: 1px;
   background-color: white;
+}
+.help-tip:checked p {
+  display: block;
+  color:red;
 }
 .help-tip p:after {
   /* Prevents the tooltip from being hidden */
@@ -164,18 +178,20 @@ input {
 .calendar-btn {
   border: none;
   cursor: text;
+  align-content: middle;
+  vertical-align: middle;
+  align-self: middle;
 }
 
-.selector-box {
-  height: 20px;
-}
-.calendar-button-holder {
+.button-box {
+  line-height: 20px;
   border: 1px $grey solid;
-  width: 150px;
-  height: 20px;
+  width: 94%;
+  height: 22px;
   text-align: center;
   vertical-align: center;
-  align: left;
+  align-content: center;
+  align-self: true;
 }
 .app-container {
   border: 1px $grey solid;
@@ -183,16 +199,19 @@ input {
 }
 
 .pricing-container {
+  margin-top: 20px;
   line-height: 20px;
-  width: 200px;
+  width: 100%;
 }
 .pricing-table {
+  font-size: 11px;
   font-weight: 300;
-  width: 175px;
+  width: 98%;
 }
 
 .pricing-total {
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
 }
 .price-row {
   text-align: right;
@@ -212,4 +231,38 @@ border-collapse: collapse;
   align: right;
   position: relative;
   color: #007a87;
+}
+
+.on-peoples-minds {
+  padding-top: 10px;
+  font-weight: 200;
+}
+.icon {
+  align-items: right;
+  width: 28px;
+  height: 28px;
+}
+.icon-small {
+  align-items: left;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.top-border {
+  border-top: 1px solid $grey;
+  /*border : 0px;*/
+}
+
+.bottom-border {
+  border-bottom: 1px solid $grey;
+  border-top-width: 0px;
+}
+.link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.thin {
+  font-weight: 300;
 }
