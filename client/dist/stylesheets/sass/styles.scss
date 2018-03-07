@@ -40,29 +40,16 @@ input {
   font-weight: 400;
 }
 
-.active-tile {
-  color:red;
-  background-color: blue
+.inline {
+  display: inline;
 }
 
 .caption {
   @extend %caption-font;
   line-height: 18px;
 }
-
-.modal {
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    padding-left: 15px;
-    left: 0;
-    top: 0;
-    max-width: 200px; /* Full width */
-    max-height: 200px; /* Full height */
-    /*overflow: auto;  Enable scroll if needed */
-    /*background-color: rgb(0,0,0); /* Fallback color */
-    /*color: red;*/
+.white-background {
+  background-color: white;
 }
 
 .book-now {
@@ -176,6 +163,7 @@ input {
 }
 
 .calendar-btn {
+  background-color: transparent;
   border: none;
   cursor: text;
   align-content: middle;
@@ -241,12 +229,16 @@ border-collapse: collapse;
   align-items: right;
   width: 28px;
   height: 28px;
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-bottom: 2px
 }
 .icon-small {
   align-items: left;
   width: 10px;
   height: 10px;
-  margin-top: 5px;
+  margin-top: 0px;
   margin-right: 2px;
   margin-left: 2px;
 }
@@ -267,17 +259,37 @@ border-collapse: collapse;
   font-weight: 300;
 }
 
-.modal-report {
+.modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
+    padding-top: 0px; /* Location of the box */
+    padding-left: 0px;
+    left: 5px;
+    top: 100px;
+    /*max-width: 200px; /* Full width */
+    /*max-height: 200px; /* Full height */
+    width: 50%; /* Full width */
+    height: 50%; /* Full height */
+
+    /*overflow: auto;  Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*color: red;*/
+}
+
+.modal-report {
+    /*
+    display: none;
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,
+    background-color: rgba(0,0,0,0.4); 
+    */
 }
 
 /* Modal Content/Box */

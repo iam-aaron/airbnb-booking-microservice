@@ -215,16 +215,16 @@ class MyCalendar extends React.Component {
                   this.state.endDate || this.state.startDate]
 
               }/> 
-            <div className='caption'>
+            <div className='white-background caption'>
               Minimum stay varies
             </div>
-            <div className='caption'>
+            <div className='white-background caption'>
               Updated today
             </div>
 
             {this.state.startDate || this.state.endDate 
               ? 
-              <button className='clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
+              <button style={{"float": "right"}} className='white-background clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
                 Clear Dates
               </button>
               :

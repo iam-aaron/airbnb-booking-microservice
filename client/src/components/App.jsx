@@ -8,6 +8,7 @@ import StarRating from './StarRating.jsx';
 import MyCalendar from './MyCalendar.jsx';
 import Guests from './Guests.jsx';
 import PricingTotal from './PricingTotal.jsx';
+import '../../dist/stylesheets/sass/styles.css';
 // import reportListing from './../../dist/airbnbReportListing.png';
 
 class App extends React.Component {
@@ -164,13 +165,11 @@ class App extends React.Component {
     
         <div align="center">
           <img  className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>
-          <div>
             <span 
               className='caption link thin'>Report this listing
 
 
             </span>
-          </div>
         </div>
                                            
 
