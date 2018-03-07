@@ -233,9 +233,6 @@ class MyCalendar extends React.Component {
 
           </div>
           
-          
-          
-          
         </ClickOutHandler>  
 
         
