@@ -149,9 +149,8 @@ class PricingTotal extends React.Component {
                 <td>Occupancy taxes
 
                 <div className='help-tip'>
-                  <p>Accommodations Tax ({this.props.city}) 
-                  <br></br>
-                  <a href='#'>Learn More</a>
+                  <p>Accommodations Tax ({this.props.city})  
+                  <a href='#'> Learn More.</a>
                   </p>
                 </div>
 

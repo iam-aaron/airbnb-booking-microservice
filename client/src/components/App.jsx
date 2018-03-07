@@ -107,7 +107,7 @@ class App extends React.Component {
 
             <div className='caption'>Guests
             </div>
-            <button className='selector-box' onClick={this.handleGuestsClick.bind(this, true)}> 
+            <button className='button-box' onClick={this.handleGuestsClick.bind(this, true)}> 
               {this.state.totalGuests} Guest{this.state.totalGuests > 1 ? 's' : null}
             </button>
           </div>
@@ -148,7 +148,30 @@ class App extends React.Component {
           <div className='caption'>You won't be charged yet</div>
         </div>
 
+        <br></br>
+        <br></br>
+
+        <div className='on-peoples-minds caption top-border'>
+          <img className='icon' src='https://a0.muscache.com/airbnb/static/page3/icon-uc-light-bulb-b34f4ddc543809b3144949c9e8cfcc8d.gif'
+            align='right' 
+          ></img>
+          <text className='bold'>This home is on people’s minds.</text><br></br>
+          <text>It’s been viewed {Math.round(this.state.listingInfo.reviews_count / 100) * 100} times in the past week.</text>
+
+        </div>
+    
+        <div align="center">
+          <img  className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>
+          <span>
+            <span className='caption link thin'>Report this listing  </span>
+          </span>
+        </div>
+                                           
+
+
       </div>
+
+
     );
   }
 }

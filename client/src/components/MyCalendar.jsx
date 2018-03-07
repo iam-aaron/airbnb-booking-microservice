@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
+import Calendar from '../../dist/react-calendar/dist/entry.js';
+
 import ClickOutHandler from 'react-onclickout';
 
 class MyCalendar extends React.Component {
@@ -21,15 +23,15 @@ class MyCalendar extends React.Component {
 
     };
 
-    this.onChange = this.onChange.bind(this);
     this.handleClickDay = this.handleClickDay.bind(this);
     this.updateActiveDays = this.updateActiveDays.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-    });
+    console.log('mount');
+
   }  
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       availableDays: nextProps.availableDays,
@@ -37,10 +39,9 @@ class MyCalendar extends React.Component {
     });
   }
 
-  onChange(array) {
-  }
 
   handleCheckInClick() {
+    console.log('check in');
     this.setState({
       currentlyChoosingCheckIn: true
     });
@@ -55,6 +56,7 @@ class MyCalendar extends React.Component {
   }
 
   handleCheckOutClick() {
+    console.log('check out');
     this.setState({
       currentlyChoosingCheckIn: false,
     });
@@ -67,7 +69,7 @@ class MyCalendar extends React.Component {
   }
   showCalendar(boolean) {
     let modal = document.getElementById('myModal');
-    boolean === true ? modal.style.display = 'block' : modal.style.display = 'none';
+    boolean ? modal.style.display = 'block' : modal.style.display = 'none';
     this.setState({
     });
   }
@@ -166,12 +168,12 @@ class MyCalendar extends React.Component {
 
         <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>  
 
-          <div className='calendar-button-holder selector-box'>
+          <div className='button-box'>
             <button className='calendar-btn' onClick={this.handleCheckInClick.bind(this)}>
               {
                 !this.state.startDate 
                   ? this.state.checkInDisplayText 
-                  : this.state.startDate.toLocaleDateString()
+                  : this.state.startDate.toDateString().slice(3, 10)
               }
 
             </button>
@@ -179,7 +181,7 @@ class MyCalendar extends React.Component {
               {
                 !this.state.endDate 
                   ? this.state.checkOutDisplayText 
-                  : this.state.endDate.toLocaleDateString()
+                  : this.state.endDate.toDateString().slice(3, 10)
               }
             </button>
           </div>
@@ -194,8 +196,11 @@ class MyCalendar extends React.Component {
                 onClickDay={this.handleClickDay}
                 prev2ButtonDisabled={true}
                 showNeighboringMonth={false}
-                onChange={this.onChange}
-                formatS
+                tileClassName={({ date }) => {
+                if (!this.state.activeDays) return ['active-tile'];
+                  return !this.state.activeDays.map((date) => date.toLocaleDateString())
+                    .includes(date.toLocaleDateString());
+                }}
                 tileDisabled={({date}) => {
                 if (!this.state.activeDays) return true;
                   return !this.state.activeDays.map((date) => date.toLocaleDateString())
@@ -229,6 +234,8 @@ class MyCalendar extends React.Component {
           }
           
         </ClickOutHandler>  
+
+        
 
       </div>
     );
