@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
+import Calendar from '../../dist/react-calendar/dist/entry.js';
 import ClickOutHandler from 'react-onclickout';
 import StarRating from './StarRating.jsx';
 import MyCalendar from './MyCalendar.jsx';
 import Guests from './Guests.jsx';
 import PricingTotal from './PricingTotal.jsx';
+// import reportListing from './../../dist/airbnbReportListing.png';
 
 class App extends React.Component {
 
@@ -43,7 +45,7 @@ class App extends React.Component {
   getBookingInfo() {
     $.ajax({
       method: 'GET',
-      url: `http://127.0.0.1:3003/rooms/${this.props.listingId}/bookings`,
+      url: `http://127.0.0.1:3003/rooms/api/${this.props.listingId}/bookings`,
       success: (data) => {
         console.log('Ajax success!');
         let dates = data.available_days.map( x => new Date(x));
@@ -119,7 +121,7 @@ class App extends React.Component {
                   personCapacity={this.state.listingInfo.person_capacity}
                   handleClose={this.handleGuestsClick.bind(this, false)}
                   updateGuestsTotal={this.updateGuestsTotal}
-                  />
+                />
               </div>
             </ClickOutHandler> 
           }
@@ -155,16 +157,20 @@ class App extends React.Component {
           <img className='icon' src='https://a0.muscache.com/airbnb/static/page3/icon-uc-light-bulb-b34f4ddc543809b3144949c9e8cfcc8d.gif'
             align='right' 
           ></img>
-          <text className='bold'>This home is on people’s minds.</text><br></br>
-          <text>It’s been viewed {Math.round(this.state.listingInfo.reviews_count / 100) * 100} times in the past week.</text>
+          <span className='bold'>This home is on people’s minds.</span><br></br>
+          <span>It’s been viewed {Math.round(this.state.listingInfo.reviews_count / 100) * 100} times in the past week.</span>
 
         </div>
     
         <div align="center">
           <img  className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>
-          <span>
-            <span className='caption link thin'>Report this listing  </span>
-          </span>
+          <div>
+            <span 
+              className='caption link thin'>Report this listing
+
+
+            </span>
+          </div>
         </div>
                                            
 

@@ -9,7 +9,7 @@ class MyCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCalendar: props.showCalendar,
+      // showCalendar: props.showCalendar,
       checkInDisplayText: 'Check In',
       startDate: null,
       checkOutDisplayText: 'Check Out',
@@ -41,9 +41,11 @@ class MyCalendar extends React.Component {
 
 
   handleCheckInClick() {
-    console.log('check in');
+    // console.log('check in');
     this.setState({
-      currentlyChoosingCheckIn: true
+      currentlyChoosingCheckIn: true,
+      startDate: null,
+      endDate: null,
     });
     let modal = document.getElementById('myModal');
     modal.style.display = 'block';
@@ -113,7 +115,8 @@ class MyCalendar extends React.Component {
   }
 
   handleClickDay(date) {
-
+    console.log('test');
+      // debugger;
     if (this.state.currentlyChoosingCheckIn) { // curr choosing check in
       if (this.state.startDate) {
         this.setState({
@@ -128,6 +131,7 @@ class MyCalendar extends React.Component {
           ? this.setState({startDate: this.state.endDate, endDate: date})
           : null;
         this.showCalendar(false);
+        this.setState({startDate: date});
         this.props.triggerPricingTotal(date, this.state.endDate);
 
 
@@ -186,52 +190,51 @@ class MyCalendar extends React.Component {
             </button>
           </div>
 
-          {
-            <div id='myModal' className='modal'>
+          
+          <div id='myModal' className='modal'>
 
-              <Calendar 
-                returnValue={'range'}
-                calendarType={'US'}
-                selectRange={true}
-                onClickDay={this.handleClickDay}
-                prev2ButtonDisabled={true}
-                showNeighboringMonth={false}
-                tileClassName={({ date }) => {
+            <Calendar 
+              returnValue={'range'}
+              calendarType={'US'}
+              selectRange={false}
+              onClickDay={this.handleClickDay}
+              prev2ButtonDisabled={true}
+              showNeighboringMonth={false}
+              tileClassName={({ date }) => {
                 if (!this.state.activeDays) return ['active-tile'];
-                  return !this.state.activeDays.map((date) => date.toLocaleDateString())
-                    .includes(date.toLocaleDateString());
-                }}
-                tileDisabled={({date}) => {
+                return !this.state.activeDays.map((date) => date.toLocaleDateString())
+                  .includes(date.toLocaleDateString());
+              }}
+              tileDisabled={({date}) => {
                 if (!this.state.activeDays) return true;
-                  return !this.state.activeDays.map((date) => date.toLocaleDateString())
-                    .includes(date.toLocaleDateString());
-                }}
-                value={
-                  [this.state.startDate || this.state.endDate || new Date(), 
-                    this.state.endDate || this.state.startDate]
+                return !this.state.activeDays.map((date) => date.toLocaleDateString())
+                  .includes(date.toLocaleDateString());
+              }}
+              value={
+                [this.state.startDate || this.state.endDate || new Date(), 
+                  this.state.endDate || this.state.startDate]
 
-                }/> 
-              <div className='caption'>
-                Minimum stay varies
-              </div >
-              <div className='caption'>
-                Updated today
-              </div>
-
-              {this.state.startDate || this.state.endDate 
-                ? 
-                <button className='clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
-                  Clear Dates
-                </button>
-                :
-                <div></div>
-              }
-
+              }/> 
+            <div className='caption'>
+              Minimum stay varies
             </div>
-            
-            /*:
-            <div>Calendar hidden</div>*/
-          }
+            <div className='caption'>
+              Updated today
+            </div>
+
+            {this.state.startDate || this.state.endDate 
+              ? 
+              <button className='clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
+                Clear Dates
+              </button>
+              :
+              <div></div>
+            }
+
+          </div>
+          
+          
+          
           
         </ClickOutHandler>  
 

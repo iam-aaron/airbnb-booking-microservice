@@ -1,10 +1,19 @@
-var express = require('express');
-var bookingRouter = express.Router();
-var mongoose = require('mongoose');
-var db = require('../database/model.js');
+const express = require('express');
+const bookingRouter = express.Router();
+const mongoose = require('mongoose');
+const db = require('../database/model.js');
+const path = require('path');
+
 
 bookingRouter
   .route('/:roomid/bookings')
+  .get((req, res, next) => res.sendFile('index.html', {root: path.resolve('../public')}))
+  .options((req, res) => {
+    res.sendStatus(200);
+  });
+
+bookingRouter
+  .route('/api/:roomid/bookings')
   .get((req, res, next) => {
     db.findOne(req.params.roomid)
       .then((data) => {
