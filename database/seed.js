@@ -29,6 +29,7 @@ var seedDb = function(data) {
         return Bookings.insertOne(booking.listing);
       })
         .then(() => {
+          console.log('Successfully seeded database!');
           return connect.disconnect();
         })
         .catch((err) => console.log('Error: listing insert', err));
