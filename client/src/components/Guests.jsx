@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 class Guests extends React.Component {
   constructor(props) {
@@ -8,10 +9,20 @@ class Guests extends React.Component {
       adults: 1,
       children: 0,
       infants: 0,
+      atCapacity: false,
+
     };
     this.onGuestPickerClick = this.onGuestPickerClick.bind(this);
   }
+  componentDidMount() {
+    if (this.props.personCapacity === 1) {
+      this.setState({atCapacity: true});
+    }
+    $("#adult-minus-btn").css("border", "1px solid #b2d7db");
+    $("#children-minus-btn").css("border", "1px solid #b2d7db");
+    $("#infants-minus-btn").css("border", "1px solid #b2d7db");
 
+  }
   onGuestPickerClick(sign, ageGroup, e) {
     let capacity = this.props.personCapacity;
     let currentAdults = this.state.adults;
@@ -19,21 +30,63 @@ class Guests extends React.Component {
     let currentInfants = this.state.infants;
     switch(ageGroup) {
     case 'adults':
+      let adultsTotal = Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren);
       this.setState({
-        adults: Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren)
+        adults: adultsTotal
       });
-      this.props.updateGuestsTotal(ageGroup, Math.min(Math.max(currentAdults + 1 * sign, 1), capacity - currentChildren))
+      this.props.updateGuestsTotal(ageGroup, adultsTotal);
+      if (adultsTotal === 1) {
+        $("#adult-minus-btn").css("border", "1px solid #b2d7db"); 
+      }
+      if (adultsTotal > 1) {
+        $("#adult-minus-btn").css("border", "1px solid #007a87");
+      }
+      if (currentChildren + adultsTotal === capacity) {
+        $("#adult-plus-btn").css("border", "1px solid #b2d7db");
+        $("#children-plus-btn").css("border", "1px solid #b2d7db");
+        // this.setState({atCapacity: true});
+      } else {
+        $("#adult-plus-btn").css("border", "1px solid #007a87");
+        $("#children-plus-btn").css("border", "1px solid #007a87");
+
+      }
+
       break;
     case 'children':
+      let childrenTotal = Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults);
       this.setState({
-        children: Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults)
+        children: childrenTotal
       });     
       this.props.updateGuestsTotal(ageGroup, Math.min(Math.max(currentChildren + 1 * sign, 0), capacity - currentAdults))     
+      if (childrenTotal === 0) {
+        $("#children-minus-btn").css("border", "1px solid #b2d7db"); 
+      }
+      if (childrenTotal > 0) {
+        $("#children-minus-btn").css("border", "1px solid #007a87"); 
+      }
+      if (currentAdults + childrenTotal === capacity) {
+        $("#adult-plus-btn").css("border", "1px solid #b2d7db");
+        $("#children-plus-btn").css("border", "1px solid #b2d7db");
+        // this.setState({atCapacity: true});
+      } else {
+        $("#adult-plus-btn").css("border", "1px solid #007a87");
+        $("#children-plus-btn").css("border", "1px solid #007a87");
+        // this.setState({atCapacity: false});
+      }
       break;
     case 'infants':
+      let infantsTotal = Math.min(Math.max(currentInfants + 1 * sign, 0), 5);
       this.setState({
-        infants: Math.min(Math.max(currentInfants + 1 * sign, 0), 5)
-      });     
+        infants: infantsTotal
+      });   
+      if (infantsTotal === 0) {
+        $("#infants-minus-btn").css("border", "1px solid #b2d7db");
+      } else if (infantsTotal < 5) {
+        $("#infants-minus-btn").css("border", "1px solid #007a87");
+        $("#infants-plus-btn").css("border", "1px solid #007a87");
+      } else {
+        $("#infants-plus-btn").css("border", "1px solid #b2d7db");
+      }
       break;
     }
   }
@@ -51,13 +104,13 @@ class Guests extends React.Component {
               </td>
               <td>
                 <input 
-                  type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'adults')}></input>
+                  type='button' value='-' id='adult-minus-btn' onClick={this.onGuestPickerClick.bind(this, -1, 'adults')}></input>
               </td>
               <td>
                 {this.state.adults}
               </td>
               <td>
-                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'adults')}></input>
+                <input type='button' value='+' id='adult-plus-btn' onClick={this.onGuestPickerClick.bind(this, 1, 'adults')}></input>
               </td>
             </tr>
 
@@ -67,13 +120,13 @@ class Guests extends React.Component {
                 <div className='caption'>Ages 2-12</div>
               </td>
               <td>
-                <input type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'children')}></input>
+                <input type='button' value='-' id='children-minus-btn' onClick={this.onGuestPickerClick.bind(this, -1, 'children')}></input>
               </td>
               <td>
                 {this.state.children}
               </td>
               <td>
-                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'children')}></input>
+                <input type='button' value='+' id='children-plus-btn' onClick={this.onGuestPickerClick.bind(this, 1, 'children')}></input>
               </td>
             </tr>
 
@@ -83,13 +136,13 @@ class Guests extends React.Component {
                 <div className='caption'>Under 2</div>
               </td>
               <td>
-                <input type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'infants')}></input>
+                <input type='button' value='-' id='infants-minus-btn' onClick={this.onGuestPickerClick.bind(this, -1, 'infants')}></input>
               </td>
               <td>
                 {this.state.infants}
               </td>
               <td>
-                <input type='button' value='+' onClick={this.onGuestPickerClick.bind(this, 1, 'infants')}></input>
+                <input type='button' value='+' id='infants-plus-btn' onClick={this.onGuestPickerClick.bind(this, 1, 'infants')}></input>
               </td>
             </tr>
 

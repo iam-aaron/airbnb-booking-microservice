@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 // import Calendar from 'react-calendar';
 import Calendar from '../../dist/react-calendar/dist/entry.js';
 // import './../../dist/stylesheets/sass/styles.css';
+import $ from 'jquery';
 
 import ClickOutHandler from 'react-onclickout';
 
@@ -10,7 +11,6 @@ class MyCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // showCalendar: props.showCalendar,
       checkInDisplayText: 'Check In',
       startDate: null,
       checkOutDisplayText: 'Check Out',
@@ -46,8 +46,7 @@ class MyCalendar extends React.Component {
       startDate: null,
       endDate: null,
     });
-    let modal = document.getElementById('myModal');
-    modal.style.display = 'block';
+    $("#myModal").css("display", "block");
     if (this.state.startDate && this.state.endDate) {
       this.setState({
         startDate: null,
@@ -64,16 +63,14 @@ class MyCalendar extends React.Component {
       this.updateActiveDays(this.state.startDate);
     }
 
-    let modal = document.getElementById('myModal');
-    modal.style.display = 'block';
+    $("#myModal").css("display", "block");
   }
   showCalendar(boolean) {
-    let modal = document.getElementById('myModal');
-    boolean ? modal.style.display = 'block' : modal.style.display = 'none';
+    boolean ? $("#myModal").css("display", "block") : $("#myModal").css("display", "none");;
     this.setState({
     });
   }
-
+  
   updateActiveDays(clickedDate) {
     let availString = this.state.availableDays.map(x => x.toLocaleDateString());
     let newAvail = [];

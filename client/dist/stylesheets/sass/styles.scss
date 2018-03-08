@@ -9,7 +9,7 @@ $padding: 7px;
 body {
   font-family: $font-family;
   color: $dark-grey;
-  font-size: 16px;
+  font-size: 14px;
   /*max-width: 220px;*/
   line-height: 14px;
 
@@ -170,9 +170,10 @@ input {
   cursor: text;
   line-height: 20px;
   border: 0px solid;
-  width: 50%;
-  /*text-align: center;*/
+  width: 45%;
+  text-align: center;
   vertical-align: center;
+  font-size: 14px;
   /*align-content: center;*/
   /*align-self: true;*/
 }
@@ -180,11 +181,14 @@ input {
 .align-left {
   /*align-content: left;*/
   text-align: left;
+  padding-left: 5px;
 }
 
 .align-right {
   /*align-content: right;*/
   text-align: right;
+  padding-right: 5px;
+
 }
 
 .guest-btn {
@@ -200,7 +204,8 @@ input {
 .app-container {
   border: 1px $grey solid;
   padding: 10px;
-  max-width: 220px;
+  max-width: 250px;
+  min-width: 200px;
 }
 
 .pricing-container {
