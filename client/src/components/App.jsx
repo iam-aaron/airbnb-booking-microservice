@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-// import Calendar from 'react-calendar';
-// import Calendar from '../../dist/react-calendar/dist/entry.js';
 import ClickOutHandler from 'react-onclickout';
 import StarRating from './StarRating.jsx';
 import MyCalendar from './MyCalendar.jsx';
 import Guests from './Guests.jsx';
 import PricingTotal from './PricingTotal.jsx';
 import './../../dist/stylesheets/sass/styles.css';
-// import reportListing from './../../dist/airbnbReportListing.png';
 
 class App extends React.Component {
 
@@ -38,9 +35,9 @@ class App extends React.Component {
   }
 
   handleGuestsClick(boolean) {
-    this.setState({
-      showGuests: boolean
-    });
+    boolean 
+    ? $('#guest-modal').css('display', 'block') 
+    : $('#guest-modal').css('display', 'none');
   }
 
   getBookingInfo() {
@@ -48,13 +45,11 @@ class App extends React.Component {
       method: 'GET',
       url: `http://127.0.0.1:3003/rooms/api/${this.props.listingId}/bookings`,
       success: (data) => {
-        console.log('Ajax success!');
         let dates = data.available_days.map( x => new Date(x));
         data.available_days = dates;
         this.setState({
           listingInfo: data
         });
-
       },
       error: (err) => {
         console.log('Ajax error!', err);
@@ -106,6 +101,8 @@ class App extends React.Component {
 
         <br></br>
         <div> 
+
+              <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
           <div>
 
             <div className='caption'>Guests
@@ -114,18 +111,21 @@ class App extends React.Component {
               {this.state.totalGuests} Guest{this.state.totalGuests > 1 ? 's' : null}
             </button>
           </div>
-          {!this.state.showGuests
-            ? <div></div>
-            : <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
-              <div>    
+
+
+            <div className='guest-modal-container'>
+
+              <div id='guest-modal'>    
                 <Guests 
                   personCapacity={this.state.listingInfo.person_capacity}
                   handleClose={this.handleGuestsClick.bind(this, false)}
                   updateGuestsTotal={this.updateGuestsTotal}
                 />
               </div>
+            </div>
+
             </ClickOutHandler> 
-          }
+
         </div> 
 
         <br></br>
