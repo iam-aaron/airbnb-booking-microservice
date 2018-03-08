@@ -121,10 +121,15 @@ class PricingTotal extends React.Component {
 
               <tr className='bottom-separator'>
                 <td>Cleaning fee
-                <div className='help-tip'>
-                  <p>One time fee charged by host to cover the cost of cleaning their space.
-                  </p>
+
+                <div className='help-tip-container'>
+                  <div className='help-tip'>
+                    <p>One time fee charged by host to cover the cost of cleaning their space.
+                    </p>
+                  </div>
                 </div>
+
+
                 </td>
                 <td className='price-row'>${this.props.cleaningFee}
                 </td>
@@ -133,9 +138,11 @@ class PricingTotal extends React.Component {
               <tr className='bottom-separator'>
                 <td>Service fee
 
-                <div className='help-tip'>
-                  <p>This helps us run our platform and offer services like 24/7 support on your trip.
-                  </p>
+                <div className='help-tip-container'>
+                  <div className='help-tip'>
+                    <p>This helps us run our platform and offer services like 24/7 support on your trip.
+                    </p>
+                  </div>
                 </div>
 
                 </td>
@@ -146,10 +153,12 @@ class PricingTotal extends React.Component {
               <tr className='bottom-separator'>
                 <td>Occupancy taxes
 
-                <div className='help-tip'>
-                  <p>Accommodations Tax ({this.props.city})  
-                  <a href='#'> Learn More.</a>
-                  </p>
+                <div className='help-tip-container'>
+                  <div className='help-tip'>
+                    <p>Accommodations Tax ({this.props.city})  
+                    <a href='#'> Learn More.</a>
+                    </p>
+                  </div>
                 </div>
 
                 </td>
