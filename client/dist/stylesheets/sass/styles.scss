@@ -89,7 +89,7 @@ input {
     height: 12px;
     line-height: 10px;
     cursor: default;
-    z-index: 4;
+    /*z-index: 1;*/
 }
 
 .help-tip:before{
@@ -112,7 +112,7 @@ input {
 
 .help-tip p{    /* The tooltip */
     display: none;
-    z-index: 4;
+    z-index: 1;
 
     text-align: center;
     color: white;
