@@ -44,7 +44,6 @@ class Guests extends React.Component {
       if (currentChildren + adultsTotal === capacity) {
         $("#adult-plus-btn").css("border", "1px solid #b2d7db");
         $("#children-plus-btn").css("border", "1px solid #b2d7db");
-        // this.setState({atCapacity: true});
       } else {
         $("#adult-plus-btn").css("border", "1px solid #007a87");
         $("#children-plus-btn").css("border", "1px solid #007a87");
@@ -67,11 +66,9 @@ class Guests extends React.Component {
       if (currentAdults + childrenTotal === capacity) {
         $("#adult-plus-btn").css("border", "1px solid #b2d7db");
         $("#children-plus-btn").css("border", "1px solid #b2d7db");
-        // this.setState({atCapacity: true});
       } else {
         $("#adult-plus-btn").css("border", "1px solid #007a87");
         $("#children-plus-btn").css("border", "1px solid #007a87");
-        // this.setState({atCapacity: false});
       }
       break;
     case 'infants':
