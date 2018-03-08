@@ -196,7 +196,8 @@ input {
   text-align: center;
   vertical-align: center;
   align-content: center;
-  align-self: true; }
+  align-self: true;
+  font-size: 14px; }
 
 .guest-modal-container {
   border: 0px #c4c4c4 solid;
