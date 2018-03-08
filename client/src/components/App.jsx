@@ -159,7 +159,10 @@ class App extends React.Component {
             align='right' 
           ></img>
           <span className='bold'>This home is on people’s minds.</span><br></br>
-          <span>It’s been viewed {Math.round(this.state.listingInfo.reviews_count / 100) * 100} times in the past week.</span>
+          <span>It’s been viewed { Math.round(this.state.listingInfo.reviews_count / 100) * 100 > 0 
+            ? Math.round(this.state.listingInfo.reviews_count / 100) * 100
+            : 'lots of'
+          } times in the past week.</span>
 
         </div>
         <br></br>
