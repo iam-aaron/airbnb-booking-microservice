@@ -32,7 +32,6 @@ class PricingTotal extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.getOccupanyTaxPercentage(this.props.city);
   }  
 
@@ -72,7 +71,6 @@ class PricingTotal extends React.Component {
     };
 
     const millisecondsInDay = 86400000;
-    console.log(endDate, startDate);
     let totalNights = Math.round((endDate - startDate) / millisecondsInDay);
     let weekendDays = countWeekendDays(startDate, totalNights); 
     let weekdayDays = totalNights - weekendDays;

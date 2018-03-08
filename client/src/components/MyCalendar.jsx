@@ -29,7 +29,6 @@ class MyCalendar extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mount');
 
   }  
 
@@ -58,7 +57,6 @@ class MyCalendar extends React.Component {
   }
 
   handleCheckOutClick() {
-    console.log('check out');
     this.setState({
       currentlyChoosingCheckIn: false,
     });
@@ -115,7 +113,6 @@ class MyCalendar extends React.Component {
   }
 
   handleClickDay(date) {
-    console.log('test');
       // debugger;
     if (this.state.currentlyChoosingCheckIn) { // curr choosing check in
       if (this.state.startDate) {
