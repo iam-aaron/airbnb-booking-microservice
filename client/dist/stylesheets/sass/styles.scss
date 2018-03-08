@@ -11,7 +11,7 @@ body {
   color: $dark-grey;
   font-size: 14px;
   /*max-width: 220px;*/
-  line-height: 14px;
+  /*line-height: 24px;*/
 
 }
 
@@ -71,6 +71,10 @@ input {
 .guest-picker-container {
   border: 1px solid $grey;
   margin-top: 6px;
+  padding: 2px 2px 2px 2px;
+/*  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;*/
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
@@ -86,7 +90,7 @@ input {
 }
 
 .guest-picker {
-  width: 100%;
+  width: 95%;
 }
 
 .guest-picker-container td{
@@ -128,7 +132,7 @@ input {
     color: $grey;
 }
 
-.help-tip:hover p {
+.help-tip:after p {
     display: block;
     transform-origin: 100% 0%;  
 }
@@ -144,18 +148,18 @@ input {
   background-color: none;
   padding: 0px;
   width: 100px;
-  position: fixed;
+  position: relative;
   border-radius: 0px;
   background-color: white;
 }
 
-.help-tip p:after {
+.help-tip p:hover {
   /* Prevents the tooltip from being hidden */
   z-index: 1; /* Sit on top */
   width: 100%;
   height: 40px;
   content: "";
-  position: fixed;
+  position: static;
   top: -40px;
   left: 0;
 }
@@ -168,7 +172,8 @@ input {
 .calendar-btn {
   background-color: transparent;
   cursor: text;
-  line-height: 20px;
+  line-height: 24px;
+  height: 24px;
   border: 0px solid;
   width: 45%;
   text-align: center;
@@ -192,10 +197,10 @@ input {
 }
 
 .guest-btn {
-  line-height: 20px;
+  line-height: 24px;
   border: 1px $grey solid;
   width: 100%;
-  height: 22px;
+  height: 24px;
   text-align: center;
   vertical-align: center;
   align-content: center;
@@ -205,17 +210,18 @@ input {
   border: 1px $grey solid;
   padding: 10px;
   max-width: 250px;
-  min-width: 200px;
+  min-width: 250px;
+  background-color: white;
 }
 
 .pricing-container {
-  margin-top: 22px;
-  line-height: 22px;
+  margin-top: 24px;
+  line-height: 24px;
   width: 100%;
   position: relative;
 }
 .pricing-table {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   width: 98%;
 }
@@ -226,7 +232,8 @@ input {
 }
 .price-row {
   text-align: right;
-  line-height: 25px;
+  line-height: 24px;
+  position: relative;
 }
 .bottom-separator {
   bottom-border: 1px solid $grey;
@@ -337,8 +344,9 @@ border-collapse: collapse;
 
 
 .react-calendar {
-  width: 300px;
-  max-width: 100%;
+  width: 250px;
+  /*width: 300px;*/
+  /*max-width: 100%;*/
   background: white;
   border: 1px solid #a0a096;
   font-family: Arial, Helvetica, sans-serif;
@@ -380,7 +388,7 @@ border-collapse: collapse;
   background-color: transparent;
 }
 .react-calendar__navigation button[disabled] {
-  background-color: #f0f0f0;
+  background-color: #484848;
 }
 .react-calendar__month-view__weekdays {
   text-align: center;
@@ -405,7 +413,7 @@ border-collapse: collapse;
   color: #484848;
 }
 .react-calendar__month-view__days__day--neighboringMonth {
-  color: #969696;
+  color: #484848;
 }
 .react-calendar__year-view .react-calendar__tile,
 .react-calendar__decade-view .react-calendar__tile,
@@ -447,7 +455,7 @@ button.react-calendar__tile--hasActive:enabled:focus {
 }
 button.react-calendar__tile--active:enabled:hover,
 button.react-calendar__tile--active:enabled:focus {
-  background: #1087ff;
+  background: #007a87;
 }
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;

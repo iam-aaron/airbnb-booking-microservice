@@ -70,7 +70,7 @@ class MyCalendar extends React.Component {
     this.setState({
     });
   }
-  
+
   updateActiveDays(clickedDate) {
     let availString = this.state.availableDays.map(x => x.toLocaleDateString());
     let newAvail = [];
@@ -185,7 +185,7 @@ class MyCalendar extends React.Component {
           </div>
 
           
-          <div id='myModal' className='modal'>
+          <div id='myModal' className='modal' style={{'border':'1px grey solid'}}>
 
             <Calendar 
               returnValue={'range'}
@@ -219,7 +219,10 @@ class MyCalendar extends React.Component {
             {this.state.startDate || this.state.endDate 
               ? 
               <button className='white-background clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null, activeDays: this.state.availableDays})}>
+                <span style={{'float': 'right'}}>
                 Clear Dates
+                </span>
+
               </button>
               :
               <div>
