@@ -261,7 +261,7 @@ border-collapse: collapse;
 
 .modal {
     display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
+    position: relative; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 0px; /* Location of the box */
     padding-left: 0px;
