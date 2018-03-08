@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import Calendar from 'react-calendar';
 import Calendar from '../../dist/react-calendar/dist/entry.js';
+// import './../../dist/stylesheets/sass/styles.css';
 
 import ClickOutHandler from 'react-onclickout';
 
@@ -41,7 +42,6 @@ class MyCalendar extends React.Component {
 
 
   handleCheckInClick() {
-    // console.log('check in');
     this.setState({
       currentlyChoosingCheckIn: true,
       startDate: null,
@@ -172,8 +172,8 @@ class MyCalendar extends React.Component {
 
         <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>  
 
-          <div className='button-box'>
-            <button className='calendar-btn' onClick={this.handleCheckInClick.bind(this)}>
+          <div>
+            <button className='calendar-btn align-right' onClick={this.handleCheckInClick.bind(this)}>
               {
                 !this.state.startDate 
                   ? this.state.checkInDisplayText 
@@ -181,7 +181,7 @@ class MyCalendar extends React.Component {
               }
 
             </button>
-            <button className='calendar-btn' onClick={this.handleCheckOutClick.bind(this)}>
+            <button className='calendar-btn align-left' onClick={this.handleCheckOutClick.bind(this)}>
               {
                 !this.state.endDate 
                   ? this.state.checkOutDisplayText 
@@ -224,11 +224,13 @@ class MyCalendar extends React.Component {
 
             {this.state.startDate || this.state.endDate 
               ? 
-              <button style={{"float": "right"}} className='white-background clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null})}>
+              <button className='white-background clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null, activeDays: this.state.availableDays})}>
                 Clear Dates
               </button>
               :
-              <div></div>
+              <div>
+                
+              </div>
             }
 
           </div>

@@ -80,7 +80,7 @@ class Guests extends React.Component {
             <tr>
               <td>
               Infants
-                <p className='caption'>Under 2</p>
+                <div className='caption'>Under 2</div>
               </td>
               <td>
                 <input type='button' value='-' onClick={this.onGuestPickerClick.bind(this, -1, 'infants')}></input>
@@ -96,13 +96,15 @@ class Guests extends React.Component {
           </tbody>
         </table>
 
+        <div>
 
         <p className='caption'>
           {this.props.personCapacity} guests maximum. Infants don’t count toward the number of guests.
         </p>
         
-        <button className='guest-close-btn' onClick={this.props.handleClose} align='right'>Close</button>
+        <button className='guest-close-btn' onClick={this.props.handleClose} >Close</button>
 
+        </div>
       </div>
     );
   }

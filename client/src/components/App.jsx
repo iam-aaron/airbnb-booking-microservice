@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 // import Calendar from 'react-calendar';
-import Calendar from '../../dist/react-calendar/dist/entry.js';
+// import Calendar from '../../dist/react-calendar/dist/entry.js';
 import ClickOutHandler from 'react-onclickout';
 import StarRating from './StarRating.jsx';
 import MyCalendar from './MyCalendar.jsx';
 import Guests from './Guests.jsx';
 import PricingTotal from './PricingTotal.jsx';
-import '../../dist/stylesheets/sass/styles.css';
+import './../../dist/stylesheets/sass/styles.css';
 // import reportListing from './../../dist/airbnbReportListing.png';
 
 class App extends React.Component {
@@ -110,7 +110,7 @@ class App extends React.Component {
 
             <div className='caption'>Guests
             </div>
-            <button className='button-box' onClick={this.handleGuestsClick.bind(this, true)}> 
+            <button className='guest-btn' onClick={this.handleGuestsClick.bind(this, true)}> 
               {this.state.totalGuests} Guest{this.state.totalGuests > 1 ? 's' : null}
             </button>
           </div>
@@ -162,6 +162,7 @@ class App extends React.Component {
           <span>It’s been viewed {Math.round(this.state.listingInfo.reviews_count / 100) * 100} times in the past week.</span>
 
         </div>
+        <br></br>
     
         <div align="center">
           <img  className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>

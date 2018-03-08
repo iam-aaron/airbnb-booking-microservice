@@ -10,8 +10,9 @@ body {
   font-family: $font-family;
   color: $dark-grey;
   font-size: 12px;
-  max-width: 220px;
+  /*max-width: 220px;*/
   line-height: 12px;
+
 }
 
 button {
@@ -52,6 +53,7 @@ input {
   background-color: white;
 }
 
+
 .book-now {
   text-align: center;
 }
@@ -68,8 +70,8 @@ input {
 
 .guest-picker-container {
   border: 1px solid $grey;
-  padding: 3px;
-  width: 92%;
+  margin-top: 5px;
+  width: 100%;
   text-align: center;
 }
 
@@ -83,20 +85,18 @@ input {
 }
 
 .guest-picker {
-  width: 90%;
+  width: 100%;
 }
 
 .guest-picker-container td{
   height: 35px;
-
-
 }
 
 .guest-close-btn {
   border: none;
   align-content: right;
   /* position: relative; */
-  align-content: right;
+  float: right;
   color: #007a87;
 }
 
@@ -118,6 +118,7 @@ input {
   line-height: 10px;
   cursor: pointer;
   border: 1px solid #c4c4c4;
+
 }
 
 .help-tip:before {
@@ -128,7 +129,9 @@ input {
 
 .help-tip:hover p {
     display: block;
-    /*transform-origin: 100% 0%; */ }
+    transform-origin: 100% 0%;  
+}
+
 .help-tip p {
     /* The tooltip */
   @extend %caption-font;
@@ -138,16 +141,13 @@ input {
   display: none;
   text-align: left;
   background-color: none;
-  padding: 5px;
-  width: 120px;
+  padding: 0px;
+  width: 100px;
   position: fixed;
-  border-radius: 1px;
+  border-radius: 0px;
   background-color: white;
 }
-.help-tip:checked p {
-  display: block;
-  color:red;
-}
+
 .help-tip p:after {
   /* Prevents the tooltip from being hidden */
   z-index: 1; /* Sit on top */
@@ -160,21 +160,36 @@ input {
 }
 .calendar-container {
   background-color: white;
+  position: relative;
+  border: 1px solid $grey;
 }
 
 .calendar-btn {
   background-color: transparent;
-  border: none;
   cursor: text;
-  align-content: middle;
-  vertical-align: middle;
-  align-self: middle;
+  line-height: 20px;
+  border: 0px solid;
+  width: 50%;
+  /*text-align: center;*/
+  vertical-align: center;
+  /*align-content: center;*/
+  /*align-self: true;*/
 }
 
-.button-box {
+.align-left {
+  /*align-content: left;*/
+  text-align: left;
+}
+
+.align-right {
+  /*align-content: right;*/
+  text-align: right;
+}
+
+.guest-btn {
   line-height: 20px;
   border: 1px $grey solid;
-  width: 94%;
+  width: 100%;
   height: 22px;
   text-align: center;
   vertical-align: center;
@@ -184,12 +199,14 @@ input {
 .app-container {
   border: 1px $grey solid;
   padding: 10px;
+  max-width: 220px;
 }
 
 .pricing-container {
   margin-top: 20px;
   line-height: 20px;
   width: 100%;
+  position: relative;
 }
 .pricing-table {
   font-size: 11px;
@@ -219,6 +236,9 @@ border-collapse: collapse;
   align: right;
   position: relative;
   color: #007a87;
+  float: right;
+  width: 100%;
+  align-content: right;
 }
 
 .on-peoples-minds {
@@ -261,36 +281,24 @@ border-collapse: collapse;
 
 .modal {
     display: none; /* Hidden by default */
-    position: relative; /* Stay in place */
+    position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 0px; /* Location of the box */
     padding-left: 0px;
-    left: 5px;
-    top: 100px;
+    left: 0px;
+    top: 28px;
+    border: 1px solid $grey;
     /*max-width: 200px; /* Full width */
     /*max-height: 200px; /* Full height */
-    width: 50%; /* Full width */
-    height: 50%; /* Full height */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
 
     /*overflow: auto;  Enable scroll if needed */
-    /*background-color: rgb(0,0,0); /* Fallback color */
+    background-color: white; /* Fallback color 
     /*color: red;*/
 }
 
-.modal-report {
-    /*
-    display: none;
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgb(0,0,
-    background-color: rgba(0,0,0,0.4); 
-    */
-}
+
 
 /* Modal Content/Box */
 .modal-content {
@@ -311,7 +319,7 @@ border-collapse: collapse;
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: $red;
     text-decoration: none;
     cursor: pointer;
 }
@@ -320,3 +328,124 @@ border-collapse: collapse;
 .react-calendar__month-view__days__day--weekend {
   color: #484848;
 }
+
+
+.react-calendar {
+  width: 300px;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #a0a096;
+  font-family: Arial, Helvetica, sans-serif;
+  /*line-height: 1.125em;*/
+  line-height: 1.0em;
+  align-self: center;
+  align-content: center;
+}
+
+
+.react-calendar,
+.react-calendar,
+.react-calendar:before,
+.react-calendar:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.react-calendar button {
+  border: 0;
+  /*outline: none;*/ /*steph*/
+}
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+.react-calendar__navigation {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.react-calendar__navigation button {
+  min-width: 44px;
+  max-width: 44px;
+  background: none;
+}
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: transparent;
+}
+.react-calendar__navigation button[disabled] {
+  background-color: #f0f0f0;
+}
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .75em;
+}
+.react-calendar__month-view__weekdays__weekday {
+  padding: .5em;
+}
+.react-calendar__month-view__weekNumbers {
+  font-weight: bold;
+}
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75em;
+  padding: calc(1em) calc(0.66666667em);
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #484848;
+}
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #969696;
+}
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em .5em;
+}
+.react-calendar__tile {
+  max-width: 100%;
+  text-align: center;
+  padding: .75em .5em;
+  background: none;
+  /*border: 1px solid #c4c4c4;*/
+  /*outline: .25px solid #c4c4c4;*/
+}
+button.react-calendar__tile:disabled {
+  /*background-color: #f0f0f0;*/ /*steph*/
+  text-decoration: line-through; /*steph*/
+  color: #c4c4c4; /*steph*/
+
+}
+button.react-calendar__tile:enabled:hover,
+button.react-calendar__tile:enabled:focus {
+  background-color: #99c9cf;
+}
+.react-calendar__tile--hasActive {
+  /*background: #76baff;*/
+  background: #007a87;
+  color: white;
+}
+button.react-calendar__tile--hasActive:enabled:hover,
+button.react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+  
+}
+.react-calendar__tile--active {
+  /*background: #007a87;*/
+  background: #007a87;
+  color: white;
+}
+button.react-calendar__tile--active:enabled:hover,
+button.react-calendar__tile--active:enabled:focus {
+  background: #1087ff;
+}
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
+}
+
+
+

@@ -25,7 +25,7 @@ var _MonthView = require('./MonthView');
 
 var _MonthView2 = _interopRequireDefault(_MonthView);
 
-require('./Calendar.css');
+// require('./Calendar.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
