@@ -185,7 +185,7 @@ class MyCalendar extends React.Component {
           </div>
 
           
-          <div id='myModal' className='modal' style={{'border':'1px grey solid'}}>
+          <div id='myModal'>
 
             <Calendar 
               returnValue={'range'}
@@ -194,11 +194,7 @@ class MyCalendar extends React.Component {
               onClickDay={this.handleClickDay}
               prev2ButtonDisabled={true}
               showNeighboringMonth={false}
-              tileClassName={({ date }) => {
-                if (!this.state.activeDays) return ['active-tile'];
-                return !this.state.activeDays.map((date) => date.toLocaleDateString())
-                  .includes(date.toLocaleDateString());
-              }}
+
               tileDisabled={({date}) => {
                 if (!this.state.activeDays) return true;
                 return !this.state.activeDays.map((date) => date.toLocaleDateString())
@@ -209,16 +205,22 @@ class MyCalendar extends React.Component {
                   this.state.endDate || this.state.startDate]
 
               }/> 
-            <div className='white-background caption'>
+            <div className='caption padding-left padding-top'>
               Minimum stay varies
             </div>
-            <div className='white-background caption'>
+            <div className='caption padding-left'>
               Updated today
             </div>
 
             {this.state.startDate || this.state.endDate 
               ? 
-              <button className='white-background clear-dates-btn' onClick={() => this.setState({startDate: null, endDate: null, activeDays: this.state.availableDays})}>
+              <button className='clear-dates-btn' onClick={() => 
+                  this.setState({
+                    startDate: null, 
+                    endDate: null, 
+                    activeDays: this.state.availableDays,
+                    currentlyChoosingCheckIn: true
+                  })}>
                 <span style={{'float': 'right'}}>
                 Clear Dates
                 </span>

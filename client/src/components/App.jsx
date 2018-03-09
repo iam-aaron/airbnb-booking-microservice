@@ -82,7 +82,7 @@ class App extends React.Component {
           <span className='caption'> per night</span>
         </div>
 
-        <a href='#'>
+        <a className='star-rating-link' href='#'>
           <StarRating 
             rating={this.state.listingInfo.star_rating}/>
           <span className='caption'>{this.state.listingInfo.reviews_count}</span>
