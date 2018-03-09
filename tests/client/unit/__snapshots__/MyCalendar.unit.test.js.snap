@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyCalendar should render correctly 1`] = `
+<div
+  className="calendar-container"
+>
+  <ClickOutComponent
+    onClickOut={[Function]}
+  >
+    <div>
+      <button
+        className="calendar-btn align-right"
+        onClick={[Function]}
+      >
+        Check In
+      </button>
+      <button
+        className="calendar-btn align-left"
+        onClick={[Function]}
+      >
+        Check Out
+      </button>
+    </div>
+    <div
+      className="modal"
+      id="myModal"
+      style={
+        Object {
+          "border": "1px grey solid",
+        }
+      }
+    >
+      <Calendar
+        calendarType="US"
+        maxDetail="month"
+        minDetail="century"
+        onClickDay={[Function]}
+        prev2ButtonDisabled={true}
+        returnValue="range"
+        selectRange={false}
+        showNavigation={true}
+        showNeighboringMonth={false}
+        tileClassName={[Function]}
+        tileDisabled={[Function]}
+        value={
+          Array [
+            2018-03-09T01:43:00.348Z,
+            null,
+          ]
+        }
+        view="month"
+      />
+      <div
+        className="white-background caption"
+      >
+        Minimum stay varies
+      </div>
+      <div
+        className="white-background caption"
+      >
+        Updated today
+      </div>
+      <div />
+    </div>
+  </ClickOutComponent>
+</div>
+`;
+
+exports[`MyCalendar should render fully and correctly 1`] = `
+<div
+  className="calendar-container"
+>
+  <ClickOutComponent
+    onClickOut={[Function]}
+  >
+    <div>
+      <button
+        className="calendar-btn align-right"
+        onClick={[Function]}
+      >
+        Check In
+      </button>
+      <button
+        className="calendar-btn align-left"
+        onClick={[Function]}
+      >
+        Check Out
+      </button>
+    </div>
+    <div
+      className="modal"
+      id="myModal"
+      style={
+        Object {
+          "border": "1px grey solid",
+        }
+      }
+    >
+      <Calendar
+        calendarType="US"
+        maxDetail="month"
+        minDetail="century"
+        onClickDay={[Function]}
+        prev2ButtonDisabled={true}
+        returnValue="range"
+        selectRange={false}
+        showNavigation={true}
+        showNeighboringMonth={false}
+        tileClassName={[Function]}
+        tileDisabled={[Function]}
+        value={
+          Array [
+            2018-03-09T01:43:00.359Z,
+            null,
+          ]
+        }
+        view="month"
+      />
+      <div
+        className="white-background caption"
+      >
+        Minimum stay varies
+      </div>
+      <div
+        className="white-background caption"
+      >
+        Updated today
+      </div>
+      <div />
+    </div>
+  </ClickOutComponent>
+</div>
+`;

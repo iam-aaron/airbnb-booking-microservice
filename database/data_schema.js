@@ -10,9 +10,10 @@ module.exports = [{
   'listing_weekend_price_native': Number,
   'cleaning_fee_native': Number,
   'star_rating': Number,
+  'weekly_price_factor' : 0.83,
   'reviews_count': Number,
   'listing_price_for_extra_person_native': Number,
-
+  
   'daysAvailable': Array,
 }];
 // 'instant_bookable': true,

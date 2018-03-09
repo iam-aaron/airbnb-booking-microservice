@@ -116,7 +116,7 @@
     "build-styles": "lessc ./src/Calendar.less ./src/Calendar.css",
     "copy-styles": "node ./copy-styles.js",
     "prepublishOnly": "npm run build",
-    "test": "npm run test-eslint && npm run test-jest",
+    "ignore-test": "npm run test-eslint && npm run test-jest",
     "test-eslint": "eslint ./src",
     "test-jest": "jest",
     "test-jest-coverage": "jest --coverage"

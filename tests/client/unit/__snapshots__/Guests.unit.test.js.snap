@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Guests should render fully and correctly 1`] = `
+<div
+  className="guest-picker-container"
+>
+  <table
+    className="guest-picker"
+  >
+    <tbody>
+      <tr>
+        <td>
+          Adults
+        </td>
+        <td>
+          <input
+            id="adult-minus-btn"
+            onClick={[Function]}
+            type="button"
+            value="-"
+          />
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          <input
+            id="adult-plus-btn"
+            onClick={[Function]}
+            type="button"
+            value="+"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Children
+          <div
+            className="caption"
+          >
+            Ages 2-12
+          </div>
+        </td>
+        <td>
+          <input
+            id="children-minus-btn"
+            onClick={[Function]}
+            type="button"
+            value="-"
+          />
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          <input
+            id="children-plus-btn"
+            onClick={[Function]}
+            type="button"
+            value="+"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Infants
+          <div
+            className="caption"
+          >
+            Under 2
+          </div>
+        </td>
+        <td>
+          <input
+            id="infants-minus-btn"
+            onClick={[Function]}
+            type="button"
+            value="-"
+          />
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          <input
+            id="infants-plus-btn"
+            onClick={[Function]}
+            type="button"
+            value="+"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <p
+      className="caption"
+    >
+       guests maximum. Infants don’t count toward the number of guests.
+    </p>
+    <button
+      className="guest-close-btn"
+    >
+      Close
+    </button>
+  </div>
+</div>
+`;

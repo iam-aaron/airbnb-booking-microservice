@@ -3,30 +3,8 @@ $teal: #007a87;
 $red: #ff5a5f;
 $grey: #c4c4c4;
 $dark-grey: #484848;
-$padding: 7px;
 
 
-body {
-  font-family: $font-family;
-  color: $dark-grey;
-  font-size: 14px;
-  /*max-width: 220px;*/
-  /*line-height: 24px;*/
-
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  cursor: pointer;
-  text-decoration: none;
-}
-
-input {
-  cursor: pointer;
-}
 
 %caption-font {
   color: $dark-grey;
@@ -41,18 +19,32 @@ input {
   font-weight: 400;
 }
 
-.inline {
-  display: inline;
-}
+
 
 .caption {
   @extend %caption-font;
   line-height: 20px;
 }
-.white-background {
-  background-color: white;
+
+.bottom-separator {
+  bottom-border: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+}
+.app-container {
+  border: 1px $grey solid;
+  padding: 10px;
+  max-width: 250px;
+  min-width: 250px;
+  /*background-color: white;*/
+  font-family: $font-family;
+}
+.padding-left {
+  padding-left: 8px;
 }
 
+.padding-top {
+  padding-top: 8px;
+}
 
 .book-now {
   text-align: center;
@@ -66,6 +58,9 @@ input {
   height: 26px;
   border-radius: 4px;
   border: 0px;
+  cursor: pointer;
+  font-size: 14px;
+
 }
 
 .help-tip-container {
@@ -76,8 +71,6 @@ input {
 
 .help-tip{
     position: absolute;
-/*    top: 18px;
-    right: 18px; */   
     top: 0px;
     right: 0px;
     text-align: center;
@@ -89,7 +82,6 @@ input {
     height: 12px;
     line-height: 10px;
     cursor: default;
-    /*z-index: 1;*/
 }
 
 .help-tip:before{
@@ -120,15 +112,15 @@ input {
     padding: 2px;
     /*width: 300px;*/
     width: 150px;
-    height: 20px;
+    height: 28px;
     position: absolute;
     border: 1px solid $grey;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
     right: -150px;
-    top: 6px;
+    top: 2px;
     color: $dark-grey;
-    font-size: 8px;
+    font-size: 9px;
     line-height: 1.4;
 }
 
@@ -155,10 +147,14 @@ input {
   background-color: white;
   position: relative;
   border: 1px solid $grey;
+  padding-left: 5px;
+  padding-right: 5px;
+  /*width: 100%;*/
+
 }
 
 .calendar-btn {
-  background-color: transparent;
+  /*background-color: transparent;*/
   cursor: text;
   line-height: 24px;
   height: 24px;
@@ -167,43 +163,25 @@ input {
   text-align: center;
   vertical-align: center;
   font-size: 14px;
-  /*align-content: center;*/
-  /*align-self: true;*/
+  cursor: pointer;
 }
-.modal {
-    display: none; /* Hidden by default */
+
+#myModal {
     position: absolute; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 5; /* Sit on top */
     padding-top: 0px; /* Location of the box */
-    padding-left: 0px;
+    padding-left: 10px;
     left: 0px;
     top: 28px;
     border: 1px solid $grey;
-    /*max-width: 200px; /* Full width */
-    /*max-height: 200px; /* Full height */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-
-    /*overflow: auto;  Enable scroll if needed */
-    background-color: white; /* Fallback color 
-    /*color: red;*/
-}
-
-
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.align-left {
-  /*align-content: left;*/
-  text-align: left;
-  padding-left: 5px;
+    /*width: 100%; */
+    /* Full width */
+    padding-bottom: 10px;
+    /*margin: 5px;*/
+    background-color: white; /* Fallback color */
+    text-align: left;
+    padding-left: 0px;
+    display: none; /* Hidden by default */
 }
 
 .align-right {
@@ -221,8 +199,9 @@ input {
   text-align: center;
   vertical-align: center;
   align-content: center;
-  align-self: true;
   font-size: 14px;
+  cursor: pointer;
+
 }
 
 .guest-modal-container {
@@ -236,23 +215,22 @@ input {
   display: none;
   position: absolute;
   z-index: 1;
-  padding-top: 0px;
-  padding-left: 0px;
+/*  padding-top: 0px;
+  padding-left: 0px;*/
   left: 0px;
   top: 2px;
-  border: 0px solid #c4c4c4;
+  /*border: 0px solid #c4c4c4;*/
   width: 100%;
   height: 100%;
-  background-color: transparent;
+  /*background-color: transparent;*/
  }
 
 .guest-picker-container {
   border: 1px solid $grey;
-  margin-top: 6px;
-  padding: 2px 2px 2px 2px;
-/*  margin-left: 4px;
-  margin-right: 4px;
-  margin-bottom: 4px;*/
+  /*margin-top: 6px;*/
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 5px;
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
@@ -280,18 +258,12 @@ input {
 .guest-close-btn {
   border: none;
   align-content: right;
-  /* position: relative; */
   float: right;
   color: #007a87;
+  cursor: pointer;
+
 }
 
-.app-container {
-  border: 1px $grey solid;
-  padding: 10px;
-  max-width: 250px;
-  min-width: 250px;
-  background-color: white;
-}
 
 .pricing-container {
   margin-top: 24px;
@@ -314,9 +286,10 @@ input {
   line-height: 24px;
   position: relative;
 }
-.bottom-separator {
-  bottom-border: 1px solid $grey;
-  border-bottom: 1px solid $grey;
+
+.star-rating-link {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 table {
@@ -330,6 +303,8 @@ border-collapse: collapse;
   float: right;
   width: 100%;
   align-content: right;
+  cursor: pointer;
+
 }
 
 .on-peoples-minds {
@@ -370,35 +345,18 @@ border-collapse: collapse;
   font-weight: 300;
 }
 
-
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: $red;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
 .react-calendar__month-view__days__day--weekend {
   color: #484848;
 }
 
 
 .react-calendar {
-  width: 250px;
+  /*width: 255px;*/
+  width: 100%;
   /*width: 300px;*/
   /*max-width: 100%;*/
-  background: white;
-  border: 1px solid #a0a096;
+  /*background: white;*/
+  /*border: 1px solid #a0a096;*/
   font-family: Arial, Helvetica, sans-serif;
   /*line-height: 1.125em;*/
   line-height: 1.0em;
@@ -407,18 +365,9 @@ border-collapse: collapse;
 }
 
 
-.react-calendar,
-.react-calendar,
-.react-calendar:before,
-.react-calendar:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 .react-calendar button {
   border: 0;
-  /*outline: none;*/ /*steph*/
 }
 .react-calendar button:enabled:hover {
   cursor: pointer;
@@ -430,12 +379,12 @@ border-collapse: collapse;
 }
 .react-calendar__navigation button {
   min-width: 44px;
-  max-width: 44px;
+  /*max-width: 44px;*/
   background: none;
 }
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .react-calendar__navigation button[disabled] {
   background-color: #484848;
@@ -479,9 +428,8 @@ border-collapse: collapse;
   /*outline: .25px solid #c4c4c4;*/
 }
 button.react-calendar__tile:disabled {
-  /*background-color: #f0f0f0;*/ /*steph*/
-  text-decoration: line-through; /*steph*/
-  color: #c4c4c4; /*steph*/
+  text-decoration: line-through;
+  color: #c4c4c4;
 
 }
 button.react-calendar__tile:enabled:hover,
@@ -489,7 +437,6 @@ button.react-calendar__tile:enabled:focus {
   background-color: #99c9cf;
 }
 .react-calendar__tile--hasActive {
-  /*background: #76baff;*/
   background: #007a87;
   color: white;
 }
@@ -499,7 +446,6 @@ button.react-calendar__tile--hasActive:enabled:focus {
   
 }
 .react-calendar__tile--active {
-  /*background: #007a87;*/
   background: #007a87;
   color: white;
 }
