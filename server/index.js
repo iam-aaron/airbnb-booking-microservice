@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var proxyRouter = require('./router.js');
+var bookingRouter = require('./bookingRouter.js');
+var apiRouter = require('./apiRouter.js');
 var morgan = require('morgan');
 const path = require('path');
 
@@ -24,7 +25,8 @@ app.use(function(req, res, next) {
 
 var port = 3003;
 
-app.use('/rooms', proxyRouter);
+app.use('/rooms', bookingRouter);
+app.use('/api', apiRouter);
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`);

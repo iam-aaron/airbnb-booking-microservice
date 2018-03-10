@@ -7,6 +7,7 @@ mongoose.Promise = Promise;
 //       - MONGO_PORT=27017
 
 mongoose.connect('mongodb://172.18.0.2:27017/airbnb_bookings');
+// mongoose.connect('mongodb://localhost/airbnb_bookings');
 
 // let mongoServer = process.env.MONGO_SERVER || 'localhost';
 // console.log('mongoServer', mongoServer);
