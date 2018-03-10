@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>.eslintrc.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = ".eslintrc.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>.eslintrc.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+<p>module.exports = {
+&quot;extends&quot;: 'https://github.com/reactorcore/eslint-config-hackreactor'
+};</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">env</span>: {
+    <span class="hljs-string">'es6'</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-attr">parserOptions</span>: {
+    <span class="hljs-attr">sourceType</span>: <span class="hljs-string">'module'</span>,
+    <span class="hljs-attr">ecmaVersion</span>: <span class="hljs-number">6</span>,
+    <span class="hljs-attr">ecmaFeatures</span>: {
+      <span class="hljs-string">'jsx'</span>: <span class="hljs-literal">true</span>
+    }
+  },
+  <span class="hljs-attr">rules</span>: {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>/* Indentation */</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-string">'no-mixed-spaces-and-tabs'</span>: [<span class="hljs-number">2</span>],
+    <span class="hljs-string">'indent'</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>],
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>/* Variable names */</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-string">'camelcase'</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">//changed the severity to a warning</span>
+    <span class="hljs-comment">/* Language constructs */</span>
+    <span class="hljs-string">'curly'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'eqeqeq'</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">'smart'</span>],
+    <span class="hljs-string">'func-style'</span>: [<span class="hljs-number">1</span>, <span class="hljs-string">'expression'</span>],
+    <span class="hljs-comment">/* Semicolons */</span>
+    <span class="hljs-string">'semi'</span>: <span class="hljs-number">1</span>,
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>'semi': 2,</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-string">'no-extra-semi'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-comment">/* Padding &amp; additional whitespace (perferred but optional) */</span>
+    <span class="hljs-string">'brace-style'</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">'1tbs'</span>, { <span class="hljs-string">'allowSingleLine'</span>: <span class="hljs-literal">true</span> }],
+    <span class="hljs-string">'semi-spacing'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'key-spacing'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'block-spacing'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'comma-spacing'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'no-multi-spaces'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'space-before-blocks'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'keyword-spacing'</span>: [<span class="hljs-number">1</span>, { <span class="hljs-string">'before'</span>: <span class="hljs-literal">true</span>, <span class="hljs-string">'after'</span>: <span class="hljs-literal">true</span> }],
+    <span class="hljs-string">'space-infix-ops'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-comment">/* Variable declaration */</span>
+    <span class="hljs-string">'one-var'</span>: [<span class="hljs-number">1</span>, { <span class="hljs-string">'uninitialized'</span>: <span class="hljs-string">'never'</span>, <span class="hljs-string">'initialized'</span>: <span class="hljs-string">'never'</span> }],
+    <span class="hljs-string">'no-use-before-define'</span>: [<span class="hljs-number">2</span>, { <span class="hljs-string">'functions'</span>: <span class="hljs-literal">false</span> }],
+    <span class="hljs-comment">/* Minuta */</span>
+    <span class="hljs-string">'comma-style'</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">'last'</span>],
+    <span class="hljs-string">'quotes'</span>: [<span class="hljs-number">1</span>, <span class="hljs-string">'single'</span>]
+  }
+};
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

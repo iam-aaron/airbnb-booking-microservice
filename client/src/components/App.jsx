@@ -43,7 +43,7 @@ class App extends React.Component {
   getBookingInfo() {
     $.ajax({
       method: 'GET',
-      url: `http://127.0.0.1:3003/rooms/api/${this.props.listingId}/bookings`,
+      url: `/rooms/api/${this.props.listingId}/bookings`,
       success: (data) => {
         let dates = data.available_days.map( x => new Date(x));
         data.available_days = dates;
@@ -75,10 +75,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app-container">
+      <div className="bookings-app-container">
         
         <div className='price-and-rating'>
-          <span className='header'>${this.state.listingInfo.price}</span>
+          <span className='price-header'>${this.state.listingInfo.price}</span>
           <span className='caption'> per night</span>
         </div>
 

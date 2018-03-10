@@ -365,7 +365,7 @@ export default class Calendar extends Component {
       <Navigation
         activeRange={this.state.activeRange}
         activeStartDate={this.state.activeStartDate}
-        drillUp={this.drillUp}
+        drillUp={/*this.drillUp*/}
         formatMonthYear={this.props.formatMonthYear}
         locale={this.props.locale}
         maxDate={this.props.maxDate}

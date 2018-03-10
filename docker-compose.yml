@@ -1,0 +1,19 @@
+version: "2"
+services:
+  app:
+    environment:
+      - MONGO_SERVER=172.18.0.2
+      - MONGO_PORT=27017
+    container_name: bookingservice
+    image: stephfunny/bookingswidgetservice_app:secondtry
+    restart: always
+    build: .
+    ports:
+      - "80:3003"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo:3.4.13
+    ports:
+      - "27017:27017"

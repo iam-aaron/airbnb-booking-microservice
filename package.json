@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon server/index.js",
+    "start": "node database/seed.js & node server/index.js",
     "react-dev": "webpack -d --watch",
     "seed-database": "node database/seed.js"
   },

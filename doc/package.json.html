@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>package.json</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "package.json";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>package.json</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Hackbnb"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"bookings-widget-service"</span>,
+  <span class="hljs-attr">"author"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-attr">"engines"</span>: {
+    <span class="hljs-attr">"node"</span>: <span class="hljs-string">"&gt;=6.13.0"</span>
+  },
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"jest"</span>,
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"node server/index.js"</span>,
+    <span class="hljs-attr">"react-dev"</span>: <span class="hljs-string">"webpack -d --watch"</span>,
+    <span class="hljs-attr">"seed-database"</span>: <span class="hljs-string">"node database/seed.js"</span>
+  },
+  <span class="hljs-attr">"jest"</span>: {
+    <span class="hljs-attr">"setupTestFrameworkScriptFile"</span>: <span class="hljs-string">"./node_modules/jest-enzyme/lib/index.js"</span>,
+    <span class="hljs-attr">"unmockedModulePathPatterns"</span>: [
+      <span class="hljs-string">"react"</span>,
+      <span class="hljs-string">"enzyme"</span>,
+      <span class="hljs-string">"jest-enzyme"</span>
+    ],
+    <span class="hljs-attr">"moduleNameMapper"</span>: {
+      <span class="hljs-attr">"^react(.*)$"</span>: <span class="hljs-string">"&lt;rootDir&gt;/vendor/react-master$1"</span>,
+      <span class="hljs-attr">"^config$"</span>: <span class="hljs-string">"&lt;rootDir&gt;/configs/app-config.js"</span>,
+      <span class="hljs-attr">"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$"</span>: <span class="hljs-string">"&lt;rootDir&gt;/__mocks__/fileMock.js"</span>,
+      <span class="hljs-attr">"\\.(css|less)$"</span>: <span class="hljs-string">"&lt;rootDir&gt;/__mocks__/styleMock.js"</span>
+    }
+  },
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"babel-loader"</span>: <span class="hljs-string">"^7.1.2"</span>,
+    <span class="hljs-attr">"bluebird"</span>: <span class="hljs-string">"^3.5.1"</span>,
+    <span class="hljs-attr">"body-parser"</span>: <span class="hljs-string">"^1.18.2"</span>,
+    <span class="hljs-attr">"express"</span>: <span class="hljs-string">"^4.16.2"</span>,
+    <span class="hljs-attr">"jquery"</span>: <span class="hljs-string">"^3.3.1"</span>,
+    <span class="hljs-attr">"js-beautify"</span>: <span class="hljs-string">"^1.7.5"</span>,
+    <span class="hljs-attr">"mongoose"</span>: <span class="hljs-string">"^5.0.7"</span>,
+    <span class="hljs-attr">"morgan"</span>: <span class="hljs-string">"^1.9.0"</span>,
+    <span class="hljs-attr">"nodemon"</span>: <span class="hljs-string">"^1.17.1"</span>,
+    <span class="hljs-attr">"react-calendar"</span>: <span class="hljs-string">"^2.13.0"</span>,
+    <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^16.2.0"</span>,
+    <span class="hljs-attr">"react-onclickout"</span>: <span class="hljs-string">"^2.0.8"</span>,
+    <span class="hljs-attr">"react-star-rating-component"</span>: <span class="hljs-string">"^1.3.0"</span>,
+    <span class="hljs-attr">"react2"</span>: <span class="hljs-string">"^15.3.1"</span>,
+    <span class="hljs-attr">"style-loader"</span>: <span class="hljs-string">"^0.20.2"</span>,
+    <span class="hljs-attr">"underscore"</span>: <span class="hljs-string">"^1.8.3"</span>
+  },
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"babel-cli"</span>: <span class="hljs-string">"^6.26.0"</span>,
+    <span class="hljs-attr">"babel-core"</span>: <span class="hljs-string">"^6.26.0"</span>,
+    <span class="hljs-attr">"babel-env"</span>: <span class="hljs-string">"^2.4.1"</span>,
+    <span class="hljs-attr">"babel-jest"</span>: <span class="hljs-string">"^22.4.1"</span>,
+    <span class="hljs-attr">"babel-preset-es2015"</span>: <span class="hljs-string">"^6.24.1"</span>,
+    <span class="hljs-attr">"babel-preset-react"</span>: <span class="hljs-string">"^6.24.1"</span>,
+    <span class="hljs-attr">"css-loader"</span>: <span class="hljs-string">"^0.28.10"</span>,
+    <span class="hljs-attr">"enzyme"</span>: <span class="hljs-string">"^3.3.0"</span>,
+    <span class="hljs-attr">"enzyme-adapter-react-16"</span>: <span class="hljs-string">"^1.1.1"</span>,
+    <span class="hljs-attr">"enzyme-to-json"</span>: <span class="hljs-string">"^3.3.1"</span>,
+    <span class="hljs-attr">"eslint-config-airbnb"</span>: <span class="hljs-string">"^16.1.0"</span>,
+    <span class="hljs-attr">"eslint-config-hackreactor"</span>: <span class="hljs-string">"git://github.com/reactorcore/eslint-config-hackreactor"</span>,
+    <span class="hljs-attr">"eslint-plugin-import"</span>: <span class="hljs-string">"^2.9.0"</span>,
+    <span class="hljs-attr">"eslint-plugin-jsx-a11y"</span>: <span class="hljs-string">"^6.0.3"</span>,
+    <span class="hljs-attr">"eslint-plugin-react"</span>: <span class="hljs-string">"^7.7.0"</span>,
+    <span class="hljs-attr">"jest"</span>: <span class="hljs-string">"^22.4.2"</span>,
+    <span class="hljs-attr">"regenerator-runtime"</span>: <span class="hljs-string">"^0.11.1"</span>,
+    <span class="hljs-attr">"to-string-loader"</span>: <span class="hljs-string">"^1.1.5"</span>,
+    <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"^3.11.0"</span>
+  }
+}
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

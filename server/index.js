@@ -4,8 +4,9 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var proxyRouter = require('./router.js');
 var morgan = require('morgan');
+const path = require('path');
 
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(path.resolve('public')));
 
 
 app.use(morgan('dev'));

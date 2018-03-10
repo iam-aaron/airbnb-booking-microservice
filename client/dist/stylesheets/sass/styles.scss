@@ -11,7 +11,7 @@ $dark-grey: #484848;
   font-family: $font-family;
   font-size: 12px;
 }
-.header {
+.price-header {
   font-size: 18px;
   margin-bottom: 12px;
 }
@@ -30,11 +30,12 @@ $dark-grey: #484848;
   bottom-border: 1px solid $grey;
   border-bottom: 1px solid $grey;
 }
-.app-container {
+.bookings-app-container {
   border: 1px $grey solid;
   padding: 10px;
-  max-width: 250px;
-  min-width: 250px;
+  margin: 10px;
+  width: 250px;
+  /*min-width: 250px;*/
   font-family: $font-family;
 }
 .padding-left {
@@ -151,6 +152,8 @@ $dark-grey: #484848;
     left: 0px;
     top: 28px;
     border: 1px solid $grey;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
     /*width: 100%; */
     /* Full width */
     padding-bottom: 10px;
@@ -203,7 +206,7 @@ $dark-grey: #484848;
   /*margin-top: 6px;*/
   padding-left: 5px;
   padding-right: 5px;
-  margin: 5px;
+  margin: 10px;
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
@@ -221,7 +224,7 @@ $dark-grey: #484848;
 }
 
 .guest-picker {
-  width: 95%;
+  width: 250px;
 }
 
 .guest-picker-container td{
@@ -337,8 +340,6 @@ border-collapse: collapse;
   align-content: center;
 }
 
-
-
 .react-calendar button {
   border: 0;
 }
@@ -360,7 +361,8 @@ border-collapse: collapse;
   /*background-color: transparent;*/
 }
 .react-calendar__navigation button[disabled] {
-  background-color: #484848;
+  background-color: white;
+  /*font: $dark-grey;*/
 }
 .react-calendar__month-view__weekdays {
   text-align: center;

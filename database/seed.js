@@ -20,11 +20,13 @@ var sampleAvailableDays = [
 
 var seedDb = function(data) {
   let connect;
-  let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
+  let connection = mongoose.connect('mongodb://172.18.0.2:27017/airbnb_bookings')
     .then((c) => {
       connect = c;
+      console.log('success connected to db!');
       // var BookingModel = Bookings.BookingModel;
       mongoose.Promise.map(data, (booking) => {
+        // console.log('boooking is: ', booking);
         booking.listing.available_days = sampleAvailableDays;
         return Bookings.insertOne(booking.listing);
       })

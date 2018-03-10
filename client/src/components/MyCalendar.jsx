@@ -188,6 +188,7 @@ class MyCalendar extends React.Component {
           <div id='myModal'>
 
             <Calendar 
+              minDetail={'month'}
               returnValue={'range'}
               calendarType={'US'}
               selectRange={false}
