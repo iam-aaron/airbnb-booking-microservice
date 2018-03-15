@@ -31,7 +31,6 @@ var BookingSchema = mongoose.Schema({
   'reviews_count': Number,
   'weekly_price_factor': Number,
   'listing_price_for_extra_person_native': Number,
-
   'available_days': Array,
 });
 

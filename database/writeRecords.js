@@ -1,11 +1,11 @@
 const faker = require('faker');
 const fs = require('fs');
-
+let file = fs.createWriteStream('./seedData/10millionrecords.json');
 let start = process.hrtime();
 
 let createListing = (id) => {
   let listing = {
-    'id': id,
+    '_id': id,
     'city': faker.address.city(),
     'has_availability': faker.random.boolean(),
     'min_nights': 1,
@@ -33,32 +33,51 @@ let createListing = (id) => {
   return JSON.stringify(listing);
 };
 
-let writeFiles = function(n) {
-  let filenames = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-
-  if (n === 11) {
-    return;
+let writeTenMillion = (n = 1e7) => {
+  let isReady = true;
+  while (n > 0 && isReady) {
+    isReady = file.write(`${createListing(n)}\n`);
+    n -= 1;
   }
-  let file = fs.createWriteStream(`./seedData/${filenames[n - 1]}million.json`);
-  for (let i = (n - 1) * 1e6 + 1; i <= n * 1e6; i++) {
-    if (i === (n - 1) * 1e6 + 1) {
-      file.write('[' + createListing(i) + ',\n');
-    } else if (i === n * 1e6) {
-      file.write(createListing(i) + ']', () => {
-        setTimeout(() => {
-          writeFiles(n + 1);
-        }, 2000);
-        file.end();
-        let end = process.hrtime(start);
-        console.log(`process ${n} took ${end[0]} seconds`);
-      });
-    } else {
-      file.write(createListing(i) + ',\n');
-    }
-  }
+  file.once('drain', () => {
+    writeTenMillion(n);
+  });
 };
 
-writeFiles(1);
+
+writeTenMillion();
+
+
+/*
+* below is the previous version of the write function
+*/
+
+// let writeFiles = function(n) {
+//   let filenames = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+//
+//   if (n === 11) {
+//     return;
+//   }
+//   let file = fs.createWriteStream(`./seedData/${filenames[n - 1]}million.json`);
+//   for (let i = (n - 1) * 1e6 + 1; i <= n * 1e6; i++) {
+//     if (i === (n - 1) * 1e6 + 1) {
+//       file.write('[' + createListing(i) + ',\n');
+//     } else if (i === n * 1e6) {
+//       file.write(createListing(i) + ']', () => {
+//         setTimeout(() => {
+//           writeFiles(n + 1);
+//         }, 2000);
+//         file.end();
+//         let end = process.hrtime(start);
+//         console.log(`process ${n} took ${end[0]} seconds`);
+//       });
+//     } else {
+//       file.write(createListing(i) + ',\n');
+//     }
+//   }
+// };
+//
+// writeFiles(1);
 
 //array of file names
 //call fun at end

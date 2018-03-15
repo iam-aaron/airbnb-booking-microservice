@@ -23,7 +23,8 @@ class App extends React.Component {
       totalGuests: 1,
       startDate: new Date(),
       endDate: null,
-      showPricing: false
+      showPricing: false,
+      totalCost: 0,
     };
     this.handleGuestsClick = this.handleGuestsClick.bind(this);
     this.updateGuestsTotal = this.updateGuestsTotal.bind(this);
@@ -68,8 +69,14 @@ class App extends React.Component {
     this.setState({showPricing: true, startDate: start, endDate: end});
   }
 
+  getTotalPrice(total) {
+    this.setState({totalCost: total});
+    console.log(this.state.total)
+  }
+
   handleBookNowClick() {
     alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.listingInfo.price);
+    this.getTotalPrice();
   }
 
   render() {
@@ -123,8 +130,8 @@ class App extends React.Component {
 
       <br></br>
       <PricingTotal showPricing={this.state.showPricing} adults={this.state.adults} children={this.state.children} infants={this.state.infants} startDate={this.state.startDate} endDate={this.state.endDate} price={this.state.listingInfo.price} weekendPrice={this.state.listingInfo.listing_weekend_price_native === null
-          ? this.state.listingInfo.price
-          : this.state.listingInfo.listing_weekend_price_native} cleaningFee={this.state.listingInfo.cleaning_fee_native} listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native} city={this.state.listingInfo.city} weeklyPriceFactor={this.state.weekly_price_factor}/>
+        ? this.state.listingInfo.price
+        : this.state.listingInfo.listing_weekend_price_native} cleaningFee={this.state.listingInfo.cleaning_fee_native} listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native} city={this.state.listingInfo.city} weeklyPriceFactor={this.state.weekly_price_factor} getTotal={this.getTotalPrice}/>
 
       <div className='book-now'>
         <button onClick={() => this.handleBookNowClick()}>Book</button>

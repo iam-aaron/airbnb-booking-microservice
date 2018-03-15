@@ -14,7 +14,7 @@
     "react-dev": "webpack -d --watch",
     "seed-database": "node database/seed.js",
     "localtest": "npm run react-dev && npm run server",
-    "writefiles": "node faker_schema.js"
+    "writefiles": "node seedData/writeRecords.js"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
