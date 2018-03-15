@@ -1,7 +1,7 @@
 const express = require('express');
 const apiRouter = express.Router();
 const mongoose = require('mongoose');
-const db = require('../database/model.js');
+const db = require('../database/listingModel.js');
 const path = require('path');
 
 console.log('current working directory: ', path.resolve());
@@ -29,5 +29,3 @@ apiRouter
   );
 
 module.exports = apiRouter;
-
-

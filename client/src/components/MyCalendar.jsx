@@ -17,9 +17,9 @@ class MyCalendar extends React.Component {
       endDate: null,
       currentlyChoosingCheckIn: true,
       date: new Date(),
-      availableDays: 
+      availableDays:
         props.availableDays,
-      activeDays: 
+      activeDays:
         props.availableDays,
 
     };
@@ -30,7 +30,7 @@ class MyCalendar extends React.Component {
 
   componentDidMount() {
 
-  }  
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -93,7 +93,7 @@ class MyCalendar extends React.Component {
     // this.props.triggerPricingTotal([this.state.startDate, this.state.endDate]);
     // this.handleIfStartGreaterThanEnd();
   }
-   
+
   handleIfStartGreaterThanEnd() {
     if (this.state.startDate && this.state.endDate) {
       if (this.state.endDate < this.state.startDate) {
@@ -136,7 +136,7 @@ class MyCalendar extends React.Component {
         });
         this.updateActiveDays(date);
       }
-    } 
+    }
 
 
     else { // curr choosing check out
@@ -164,30 +164,30 @@ class MyCalendar extends React.Component {
     return (
       <div className='calendar-container'>
 
-        <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>  
+        <ClickOutHandler onClickOut={this.showCalendar.bind(this, false)}>
 
           <div>
             <button className='calendar-btn align-right' onClick={this.handleCheckInClick.bind(this)}>
               {
-                !this.state.startDate 
-                  ? this.state.checkInDisplayText 
+                !this.state.startDate
+                  ? this.state.checkInDisplayText
                   : this.state.startDate.toDateString().slice(3, 10)
               }
 
             </button>
             <button className='calendar-btn align-left' onClick={this.handleCheckOutClick.bind(this)}>
               {
-                !this.state.endDate 
-                  ? this.state.checkOutDisplayText 
+                !this.state.endDate
+                  ? this.state.checkOutDisplayText
                   : this.state.endDate.toDateString().slice(3, 10)
               }
             </button>
           </div>
 
-          
+
           <div id='myModal'>
 
-            <Calendar 
+            <Calendar
               minDetail={'month'}
               returnValue={'range'}
               calendarType={'US'}
@@ -202,10 +202,10 @@ class MyCalendar extends React.Component {
                   .includes(date.toLocaleDateString());
               }}
               value={
-                [this.state.startDate || this.state.endDate || new Date(), 
+                [this.state.startDate || this.state.endDate || new Date(),
                   this.state.endDate || this.state.startDate]
 
-              }/> 
+              }/>
             <div className='caption padding-left padding-top'>
               Minimum stay varies
             </div>
@@ -213,12 +213,12 @@ class MyCalendar extends React.Component {
               Updated today
             </div>
 
-            {this.state.startDate || this.state.endDate 
-              ? 
-              <button className='clear-dates-btn' onClick={() => 
+            {this.state.startDate || this.state.endDate
+              ?
+              <button className='clear-dates-btn' onClick={() =>
                   this.setState({
-                    startDate: null, 
-                    endDate: null, 
+                    startDate: null,
+                    endDate: null,
                     activeDays: this.state.availableDays,
                     currentlyChoosingCheckIn: true
                   })}>
@@ -229,15 +229,15 @@ class MyCalendar extends React.Component {
               </button>
               :
               <div>
-                
+
               </div>
             }
 
           </div>
-          
-        </ClickOutHandler>  
 
-        
+        </ClickOutHandler>
+
+
 
       </div>
     );

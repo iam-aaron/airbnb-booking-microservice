@@ -44,30 +44,4 @@ var seedListingDb = function(data) {
     });
 };
 
-var seedBookingDb = function(data) {
-  let connect;
-  // let connection = mongoose.connect('mongodb://172.18.0.2:27017/airbnb_bookings')
-  let connection = mongoose.connect('mongodb://localhost/airbnb_bookings')
-    .then((c) => {
-      connect = c;
-      console.log('success connected to db!');
-      // var BookingModel = Bookings.BookingModel;
-      mongoose.Promise.map(data, (booking) => {
-        console.log('booking is: ', booking);
-        booking.listing.available_days = sampleAvailableDays;
-        return Bookings.insertOne(booking.listing);
-      })
-        .then(() => {
-          console.log('Successfully seeded database!');
-          return connect.disconnect();
-        })
-        .catch((err) => console.log('Error: listing insert', err));
-    })
-    .catch((err) => {
-      console.log('Error: connection', err);
-    });
-};
-
-
 seedListingDb(data);
-seedBookingDb(data);

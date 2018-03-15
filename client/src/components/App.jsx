@@ -23,7 +23,7 @@ class App extends React.Component {
       totalGuests: 1,
       startDate: new Date(),
       endDate: null,
-      showPricing: false,
+      showPricing: false
     };
     this.handleGuestsClick = this.handleGuestsClick.bind(this);
     this.updateGuestsTotal = this.updateGuestsTotal.bind(this);
@@ -35,21 +35,21 @@ class App extends React.Component {
   }
 
   handleGuestsClick(boolean) {
-    boolean 
-    ? $('#guest-modal').css('display', 'block') 
-    : $('#guest-modal').css('display', 'none');
+    boolean
+      ? $('#guest-modal').css('display', 'block')
+      : $('#guest-modal').css('display', 'none');
   }
 
   getBookingInfo() {
+    console.log(this.props.listingId);
+
     $.ajax({
       method: 'GET',
       url: `/api/rooms/${this.props.listingId}/bookings`,
       success: (data) => {
-        let dates = data.available_days.map( x => new Date(x));
+        let dates = data.available_days.map(x => new Date(x));
         data.available_days = dates;
-        this.setState({
-          listingInfo: data
-        });
+        this.setState({listingInfo: data});
       },
       error: (err) => {
         console.log('Ajax error!', err);
@@ -60,128 +60,102 @@ class App extends React.Component {
   updateGuestsTotal(ageGroup, total) {
     this.state[ageGroup] = total;
     this.setState({
-      totalGuests: this.state.adults 
-        + this.state.children
+      totalGuests: this.state.adults + this.state.children
     });
   }
 
   triggerPricingTotal(start, end) {
-    this.setState({
-      showPricing: true,
-      startDate: start,
-      endDate: end,
-    });
+    this.setState({showPricing: true, startDate: start, endDate: end});
+  }
+
+  handleBookNowClick() {
+    alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.listingInfo.price);
   }
 
   render() {
-    return (
-      <div className="bookings-app-container">
-        
-        <div className='price-and-rating'>
-          <span className='price-header'>${this.state.listingInfo.price}</span>
-          <span className='caption'> per night</span>
-        </div>
+    return (<div className="bookings-app-container">
 
-        <a className='star-rating-link' href='#'>
-          <StarRating 
-            rating={this.state.listingInfo.star_rating}/>
-          <span className='caption'>{this.state.listingInfo.reviews_count}</span>
-        </a>
+      <div className='price-and-rating'>
+        <span className='price-header'>${this.state.listingInfo.price}</span>
+        <span className='caption'>
+          per night</span>
+      </div>
 
+      <a className='star-rating-link' href='#'>
+        <StarRating rating={this.state.listingInfo.star_rating}/>
+        <span className='caption'>{this.state.listingInfo.reviews_count}</span>
+      </a>
 
-        <div className='caption'>
-          Dates
-        </div>
+      <div className='caption'>
+        Dates
+      </div>
 
-        <MyCalendar 
-          availableDays={this.state.listingInfo.available_days}
-          showCalendar={this.state.showCalendar}
-          triggerPricingTotal={this.triggerPricingTotal}
-        />
+      <MyCalendar availableDays={this.state.listingInfo.available_days} showCalendar={this.state.showCalendar} triggerPricingTotal={this.triggerPricingTotal}/>
 
-        <br></br>
-        <div> 
+      <br></br>
+      <div>
 
-              <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
+        <ClickOutHandler onClickOut={this.handleGuestsClick.bind(this, false)}>
           <div>
 
             <div className='caption'>Guests
             </div>
-            <button className='guest-btn' onClick={this.handleGuestsClick.bind(this, true)}> 
-              {this.state.totalGuests} Guest{this.state.totalGuests > 1 ? 's' : null}
+            <button className='guest-btn' onClick={this.handleGuestsClick.bind(this, true)}>
+              {this.state.totalGuests}
+              Guest{
+                this.state.totalGuests > 1
+                  ? 's'
+                  : null
+              }
             </button>
           </div>
 
+          <div className='guest-modal-container'>
 
-            <div className='guest-modal-container'>
-
-              <div id='guest-modal'>    
-                <Guests 
-                  personCapacity={this.state.listingInfo.person_capacity}
-                  handleClose={this.handleGuestsClick.bind(this, false)}
-                  updateGuestsTotal={this.updateGuestsTotal}
-                />
-              </div>
+            <div id='guest-modal'>
+              <Guests personCapacity={this.state.listingInfo.person_capacity} handleClose={this.handleGuestsClick.bind(this, false)} updateGuestsTotal={this.updateGuestsTotal}/>
             </div>
+          </div>
 
-            </ClickOutHandler> 
-
-        </div> 
-
-        <br></br>
-        <PricingTotal 
-          showPricing={this.state.showPricing}
-          adults={this.state.adults}
-          children={this.state.children}
-          infants={this.state.infants}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          price={this.state.listingInfo.price}
-          weekendPrice={this.state.listingInfo.listing_weekend_price_native === null 
-            ? this.state.listingInfo.price 
-            : this.state.listingInfo.listing_weekend_price_native}
-          cleaningFee={this.state.listingInfo.cleaning_fee_native}
-          listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native}
-          city={this.state.listingInfo.city}
-          weeklyPriceFactor={this.state.weekly_price_factor}
-        />
-
-        <div className='book-now'>
-          <button >Book</button>
-          <div className='caption'>You won't be charged yet</div>
-        </div>
-
-        <br></br>
-        <br></br>
-
-        <div className='on-peoples-minds caption top-border'>
-          <img className='icon' src='https://a0.muscache.com/airbnb/static/page3/icon-uc-light-bulb-b34f4ddc543809b3144949c9e8cfcc8d.gif'
-            align='right' 
-          ></img>
-          <span className='bold'>This home is on people’s minds.</span><br></br>
-          <span>It’s been viewed { Math.round(this.state.listingInfo.reviews_count / 100) * 100 > 0 
-            ? Math.round(this.state.listingInfo.reviews_count / 100) * 100
-            : 'lots of'
-          } times in the past week.</span>
-
-        </div>
-        <br></br>
-    
-        <div align="center">
-          <img  className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>
-            <span 
-              className='caption link thin'>Report this listing
-
-
-            </span>
-        </div>
-                                           
-
+        </ClickOutHandler>
 
       </div>
 
+      <br></br>
+      <PricingTotal showPricing={this.state.showPricing} adults={this.state.adults} children={this.state.children} infants={this.state.infants} startDate={this.state.startDate} endDate={this.state.endDate} price={this.state.listingInfo.price} weekendPrice={this.state.listingInfo.listing_weekend_price_native === null
+          ? this.state.listingInfo.price
+          : this.state.listingInfo.listing_weekend_price_native} cleaningFee={this.state.listingInfo.cleaning_fee_native} listingPriceForExtraPerson={this.state.listing_price_for_extra_person_native} city={this.state.listingInfo.city} weeklyPriceFactor={this.state.weekly_price_factor}/>
 
-    );
+      <div className='book-now'>
+        <button onClick={() => this.handleBookNowClick()}>Book</button>
+        <div className='caption'>You won't be charged yet</div>
+      </div>
+
+      <br></br>
+      <br></br>
+
+      <div className='on-peoples-minds caption top-border'>
+        <img className='icon' src='https://a0.muscache.com/airbnb/static/page3/icon-uc-light-bulb-b34f4ddc543809b3144949c9e8cfcc8d.gif' align='right'></img>
+        <span className='bold'>This home is on people’s minds.</span>
+        <br></br>
+        <span>It’s been viewed {
+            Math.round(this.state.listingInfo.reviews_count / 100) * 100 > 0
+              ? Math.round(this.state.listingInfo.reviews_count / 100) * 100
+              : 'lots of'
+          }
+          times in the past week.</span>
+
+      </div>
+      <br></br>
+
+      <div align="center">
+        <img className="icon-small" src='https://image.flaticon.com/icons/svg/149/149262.svg'></img>
+        <span className='caption link thin'>Report this listing
+
+        </span>
+      </div>
+
+    </div>);
   }
 }
 

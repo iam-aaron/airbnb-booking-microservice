@@ -15,8 +15,7 @@ mongoose.connect('mongodb://localhost/airbnb_bookings');
 // console.log(`mongodb://${mongoServer}:${mongoPort}/airbnb_bookings`);
 // mongoose.connect(`mongodb://${mongoServer}:${mongoPort}/airbnb_bookings`);
 
-
-var BookingSchema = mongoose.Schema({
+var ListingSchema = mongoose.Schema({
   'id': {type: Number, unique: true},
   'city': String,
   'has_availability': Boolean,
@@ -31,33 +30,32 @@ var BookingSchema = mongoose.Schema({
   'reviews_count': Number,
   'weekly_price_factor': Number,
   'listing_price_for_extra_person_native': Number,
-
   'available_days': Array,
 });
 
-const BookingModel = mongoose.model('Booking', BookingSchema);
+const ListingModel = mongoose.model('Listing', ListingSchema);
 
 var removeAll = function(callback) {
-  BookingModel.remove({}, callback);
+  ListingModel.remove({}, callback);
 };
 
 var insertOne = function(data) {
-  return BookingModel.create(data);
+  return ListingModel.create(data);
 };
 
 var findAll = function() {
-  return BookingModel.find({});
+  return ListingModel.find({});
 };
 
 var findOne = function(roomid) {
-  console.log('find one called');
-  return BookingModel.findOne({'id': roomid})
+  console.log('find one called on:', roomid);
+  return ListingModel.findOne({'id': roomid})
     .exec();
 };
 
 module.exports = {
-  BookingSchema: BookingSchema,
-  BookingModel: BookingModel,
+  ListingSchema: ListingSchema,
+  ListingModel: ListingModel,
   removeAll: removeAll,
   insertOne: insertOne,
   findAll: findAll,
