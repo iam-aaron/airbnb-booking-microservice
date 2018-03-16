@@ -1,0 +1,15 @@
+_id
+city
+has_availability
+min_nights
+max_nights
+native_currency
+person_capacity
+price
+listing_weekend_price_native
+cleaning_fee_native
+star_rating
+reviews_count
+weekly_price_factor
+listing_price_for_extra_person_native
+available_days
