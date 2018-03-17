@@ -43,6 +43,7 @@ class App extends React.Component {
 
   getBookingInfo() {
     console.log(this.props.listingId);
+    //let listingId = Math.ceil(this.props.listingId/20);
 
     $.ajax({
       method: 'GET',
@@ -51,6 +52,7 @@ class App extends React.Component {
         let dates = data.available_days.map(x => new Date(x));
         data.available_days = dates;
         this.setState({listingInfo: data});
+      console.log('AJAX GET DATA:', data)
       },
       error: (err) => {
         console.log('Ajax error!', err);

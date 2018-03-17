@@ -17,6 +17,7 @@ console.log('test: ', path.resolve('./public/index.html'));
 apiRouter
   .route('/rooms/:roomid/bookings')
   .get((req, res, next) => {
+    console.log('router get request received')
     db.findOne(req.params.roomid)
       .then((data) => {
         res.json(data);

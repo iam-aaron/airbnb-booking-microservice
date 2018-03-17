@@ -84,7 +84,7 @@ class PricingTotal extends React.Component {
       totalCost: totalCost,
     });
     console.log(this.state.totalCost);
-    this.props.getTotal(totalCost);
+    console.log(this.props);
   }
 
   getOccupanyTaxPercentage(city) {
