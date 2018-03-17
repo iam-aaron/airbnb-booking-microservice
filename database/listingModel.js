@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/airbnb_bookings');
 // mongoose.connect(`mongodb://${mongoServer}:${mongoPort}/airbnb_bookings`);
 
 var ListingSchema = mongoose.Schema({
-  'id': {type: Number, unique: true},
+  '_id': Number,
   'city': String,
   'has_availability': Boolean,
   'min_nights': Number,
@@ -49,7 +49,7 @@ var findAll = function() {
 
 var findOne = function(roomid) {
   console.log('find one called on:', roomid);
-  return ListingModel.findOne({'id': roomid})
+  return ListingModel.findOne({'_id': roomid})
     .exec();
 };
 

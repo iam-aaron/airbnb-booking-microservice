@@ -13,8 +13,7 @@
     "server": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "seed-database": "node database/seed.js",
-    "localtest": "npm run react-dev && npm run server",
-    "writefiles": "node seedData/writeRecords.js"
+    "localtest": "npm run react-dev && npm run server"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
@@ -61,11 +60,6 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.2",
     "regenerator-runtime": "^0.11.1",
     "to-string-loader": "^1.1.5",
