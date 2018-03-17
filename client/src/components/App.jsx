@@ -52,7 +52,6 @@ class App extends React.Component {
         let dates = data.available_days.map(x => new Date(x));
         data.available_days = dates;
         this.setState({listingInfo: data});
-      console.log('AJAX GET DATA:', data)
       },
       error: (err) => {
         console.log('Ajax error!', err);
@@ -73,11 +72,11 @@ class App extends React.Component {
 
   getTotalPrice(total) {
     this.setState({totalCost: total});
-    console.log(this.state.total)
+    console.log(total)
+    alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.total);
   }
 
   handleBookNowClick() {
-    alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.listingInfo.price);
     this.getTotalPrice();
   }
 

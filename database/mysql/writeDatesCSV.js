@@ -13,9 +13,9 @@ let createDatesTable = (id) => {
   return entry;
 };
 
-let writeTenMillion = (n = 50000) => {
+let writeTenMillion = (n = 5e5) => {
   let isReady = true;
-  if (n === 50000) {
+  if (n === 5e5) {
     datesfile.write('id,available_days\n');
   }
   while (n > 0 && isReady) {

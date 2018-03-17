@@ -21,9 +21,9 @@ let createListingsTable = (n) => {
   return (`${id},'${city}',${has_availability},${min_nights},${max_nights},'${native_currency}',${person_capacity},${price},${listing_weekend_price_native},${cleaning_fee_native},${star_rating},${reviews_count},${weekly_price_factor},${listing_price_for_extra_person_native}\n`);
 };
 
-let writeTenMillion = (n = 100) => {
+let writeTenMillion = (n = 5e5) => {
   let isReady = true;
-  if (n === 100) {
+  if (n === 5e5) {
     listingfile.write(`id,city,has_availability,min_nights,max_nights,native_currency,person_capacity,price,listing_weekend_price_native,cleaning_fee_native,star_rating,reviews_count,weekly_price_factor,listing_price_for_extra_person_native
     \n`);
   }
