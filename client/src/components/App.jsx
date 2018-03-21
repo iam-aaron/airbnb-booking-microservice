@@ -29,6 +29,7 @@ class App extends React.Component {
     this.handleGuestsClick = this.handleGuestsClick.bind(this);
     this.updateGuestsTotal = this.updateGuestsTotal.bind(this);
     this.triggerPricingTotal = this.triggerPricingTotal.bind(this);
+    this.getTotalPrice = this.getTotalPrice.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +53,7 @@ class App extends React.Component {
         let dates = data.available_days.map(x => new Date(x));
         data.available_days = dates;
         this.setState({listingInfo: data});
-      console.log('AJAX GET DATA:', data)
+        // console.log(this.state.listingInfo)
       },
       error: (err) => {
         console.log('Ajax error!', err);
@@ -68,17 +69,22 @@ class App extends React.Component {
   }
 
   triggerPricingTotal(start, end) {
-    this.setState({showPricing: true, startDate: start, endDate: end});
+    this.setState({showPricing: true, startDate: start, endDate: end}, () => {
+      // console.log('PRICING TOTAL: ', this.state.startDate, this.state.endDate)
+    });
   }
 
   getTotalPrice(total) {
-    this.setState({totalCost: total});
-    console.log(this.state.total)
+    console.log('TOTAL: ', total)
+    // this.setState({totalCost: total});
+    // return total;
+    // alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.total);
   }
 
   handleBookNowClick() {
-    alert(this.state.startDate + " , " + this.state.endDate + " , " + this.state.listingInfo.price);
-    this.getTotalPrice();
+    alert('this feature not yet complete!')
+    // this.getTotalPrice();
+    // console.log('TOTAL: ', total)
   }
 
   render() {
