@@ -1,6 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
-let listingfile = fs.createWriteStream('../seedData/listingsCSVrecords.csv');
+let listingfile = fs.createWriteStream('../../seedData/listingsCSVrecords.csv');
 
 let createListingsTable = (n) => {
   let id = n;
@@ -21,9 +21,9 @@ let createListingsTable = (n) => {
   return (`${id},'${city}',${has_availability},${min_nights},${max_nights},'${native_currency}',${person_capacity},${price},${listing_weekend_price_native},${cleaning_fee_native},${star_rating},${reviews_count},${weekly_price_factor},${listing_price_for_extra_person_native}\n`);
 };
 
-let writeTenMillion = (n = 5e5) => {
+let writeTenMillion = (n = 1e7) => {
   let isReady = true;
-  if (n === 5e5) {
+  if (n === 1e7) {
     listingfile.write(`id,city,has_availability,min_nights,max_nights,native_currency,person_capacity,price,listing_weekend_price_native,cleaning_fee_native,star_rating,reviews_count,weekly_price_factor,listing_price_for_extra_person_native
     \n`);
   }
