@@ -90,8 +90,8 @@ class MyCalendar extends React.Component {
       activeDays: newAvail,
     });
 
-    // this.props.triggerPricingTotal([this.state.startDate, this.state.endDate]);
-    // this.handleIfStartGreaterThanEnd();
+    this.props.triggerPricingTotal([this.state.startDate, this.state.endDate]);
+    this.handleIfStartGreaterThanEnd();
   }
 
   handleIfStartGreaterThanEnd() {
@@ -110,7 +110,6 @@ class MyCalendar extends React.Component {
   }
 
   handleClickDay(date) {
-      // debugger;
     if (this.state.currentlyChoosingCheckIn) { // curr choosing check in
       if (this.state.startDate) {
         this.setState({
@@ -128,7 +127,6 @@ class MyCalendar extends React.Component {
         this.setState({startDate: date});
         this.props.triggerPricingTotal(date, this.state.endDate);
 
-
       } else {
         this.setState({
           startDate: date,
@@ -136,27 +134,27 @@ class MyCalendar extends React.Component {
         });
         this.updateActiveDays(date);
       }
-    }
-
-
-    else { // curr choosing check out
-
+    } else { // curr choosing check out
       this.setState({
         endDate: date,
-      });
-
-      if (this.state.startDate) { // if you just chose out, and in exists
-        this.state.startDate > date //check if should switch
+      }, () => {
+        // console.log('START:', this.state.startDate, ", END: ", this.state.endDate)
+        if (this.state.startDate ) { // if you just chose out, and in exists
+          this.state.startDate > date //check if should switch
           ? this.setState({startDate: date, endDate: this.state.startDate})
           : null;
-        this.showCalendar(false);
-        this.props.triggerPricingTotal(this.state.startDate, date);
+          this.showCalendar(false);
+          this.props.triggerPricingTotal(this.state.startDate, this.state.endDate);
+        }
+      });
 
-
-      } else { // just chose out, haven't chosen in
-        this.setState({currentlyChoosingCheckIn: true});
-        this.updateActiveDays(date);
-      }
+      // else { // just chose out, haven't chosen in
+      //   if (this.state.endDate) {
+      //     console.log('START:', this.state.startDate, ", END: ", this.state.endDate)
+      //     this.setState({currentlyChoosingCheckIn: true});
+      //     this.updateActiveDays(date);
+      //   }
+      // }
     }
   }
 
@@ -216,12 +214,12 @@ class MyCalendar extends React.Component {
             {this.state.startDate || this.state.endDate
               ?
               <button className='clear-dates-btn' onClick={() =>
-                  this.setState({
-                    startDate: null,
-                    endDate: null,
-                    activeDays: this.state.availableDays,
-                    currentlyChoosingCheckIn: true
-                  })}>
+                this.setState({
+                  startDate: null,
+                  endDate: null,
+                  activeDays: this.state.availableDays,
+                  currentlyChoosingCheckIn: true
+                })}>
                 <span style={{'float': 'right'}}>
                 Clear Dates
                 </span>

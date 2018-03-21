@@ -1,7 +1,6 @@
 const express = require('express');
 const bookingRouter = express.Router();
 const mongoose = require('mongoose');
-const db = require('../database/mongodb/listingModel.js');
 const path = require('path');
 
 console.log('current working directory: ', path.resolve());
