@@ -1,0 +1,23 @@
+config:
+  target: "http://54.67.32.160:3003/api/rooms"
+  # target: "http://localhost:3003/api/rooms"
+
+  phases:
+    - duration: 10
+      arrivalRate: 60
+      rampTo: 500
+    # - duration: 10
+    #   arrivalRate: 30
+    # - duration: 10
+    #   arrivalRate: 50
+    # - duration: 10
+    #   arrivalRate: 100
+  processor: './artilleryHelpers.js'
+      # x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - function: "generateRandomId"
+    - loop:
+      - get:
+          url: "/{{ id }}/bookings"
+      count: 100

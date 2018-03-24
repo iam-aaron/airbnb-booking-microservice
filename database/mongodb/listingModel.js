@@ -48,7 +48,7 @@ var findAll = function() {
 };
 
 var findOne = function(roomid) {
-  console.log('find one called on:', roomid);
+  // console.log('find one called on:', roomid);
   return ListingModel.findOne({'_id': roomid})
     .exec();
 };
