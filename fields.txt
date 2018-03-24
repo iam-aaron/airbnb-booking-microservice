@@ -1,6 +1,0 @@
-id
-by
-about
-karma
-title
-score

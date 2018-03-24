@@ -50,10 +50,14 @@ class App extends React.Component {
       method: 'GET',
       url: `/api/rooms/${this.props.listingId}/bookings`,
       success: (data) => {
+        if (typeof data === 'string') {
+          data = JSON.parse(data);
+          console.log('REDIS DATA:' ,data);
+        }
         let dates = data.available_days.map(x => new Date(x));
         data.available_days = dates;
         this.setState({listingInfo: data});
-        // console.log(this.state.listingInfo)
+        // console.log(this.state.listingInfo);
       },
       error: (err) => {
         console.log('Ajax error!', err);

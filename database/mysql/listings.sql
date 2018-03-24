@@ -1,4 +1,4 @@
-DROP DATABASE bookings;
+-- DROP DATABASE bookings;
 
 CREATE DATABASE bookings;
 
@@ -35,13 +35,13 @@ ALTER TABLE listings
 ALTER TABLE dates
   ADD UNIQUE INDEX (date_id);
 
-LOAD DATA LOCAL INFILE '/Users/wseile/documents/github/thesis/sdc/whitney-booking/seedData/listingsCSVrecords.csv'
+LOAD DATA LOCAL INFILE './listingsCSVrecords.csv'
 INTO TABLE listings
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/wseile/documents/github/thesis/sdc/whitney-booking/seedData/datesCSVrecords.csv'
+LOAD DATA LOCAL INFILE './datesCSVrecords.csv'
 INTO TABLE dates
 FIELDS TERMINATED BY '*'
 LINES TERMINATED BY '\n'

@@ -1,18 +1,19 @@
+require('newrelic');
 var express = require('express');
 var app = express();
 var fs = require('fs');
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 var bookingRouter = require('./bookingRouter.js');
 var apiRouter = require('./apiRouter.js');
-var morgan = require('morgan');
+// var morgan = require('morgan');
 const path = require('path');
 
 app.use(express.static(path.resolve('public')));
 
 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(morgan('dev'));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(function(req, res, next) {
@@ -31,4 +32,3 @@ app.use('/api', apiRouter);
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
-
