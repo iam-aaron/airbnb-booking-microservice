@@ -7,7 +7,9 @@ mongoose.connect('mongodb://localhost/airbnb_bookings');
 
 
 var BookingSchema = mongoose.Schema({
-  'name': String,
+  'first': String,
+  'last': String,
+  'phone': Number,
   'start_date': Date,
   'end_date': Date,
   'totalcost': Number,
