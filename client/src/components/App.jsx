@@ -65,6 +65,23 @@ class App extends React.Component {
     });
   }
 
+  // bookReservation(data) {
+  //   console.log(data);
+  //   //let listingId = Math.ceil(this.props.listingId/20);
+  //
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: `/api/rooms/${this.props.listingId}/bookings`,
+  //     data: data,
+  //     success: () => {
+  //       console.log('post request sent');
+  //     },
+  //     error: (err) => {
+  //       console.log('Ajax error!', err);
+  //     }
+  //   });
+  // }
+
   updateGuestsTotal(ageGroup, total) {
     this.state[ageGroup] = total;
     this.setState({
@@ -89,6 +106,13 @@ class App extends React.Component {
     alert('this feature not yet complete!')
     // this.getTotalPrice();
     // console.log('TOTAL: ', total)
+    // let data = {
+    //   listing_id: this.state.listingId,
+    //   start_date: this.state.startDate,
+    //   end_date: this.state.endDate,
+    //   total_cost: this.state.totalCost,
+    // };
+    // this.bookReservation(data);
   }
 
   render() {

@@ -43,6 +43,7 @@ class PricingTotal extends React.Component {
       price: nextProps.price,
       weekendPrice: nextProps.weekendPrice,
       cleaningFee: nextProps.cleaningFee,
+      totalCost: 0,
     }, () => {
       if (nextProps.showPricing && this.state.startDate != null && this.state.startDate != null) {
         // console.log('state set: ', this.state.startDate, this.state.endDate)
@@ -98,7 +99,7 @@ class PricingTotal extends React.Component {
       totalNights: totalNights,
       totalCost: totalCost,
     }, () => {
-      console.log(totalCost);
+      // console.log(totalCost);
       this.props.getTotal(totalCost);
     });
   }
